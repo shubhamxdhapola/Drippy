@@ -14,11 +14,9 @@ import subscribeRoutes from './routes/subscribeRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 import productAdminRoutes from './routes/productAdminRoutes.js'
 import adminOrderRoutes from './routes/adminOrderRoutes.js'
-import path from 'path'
 
 const app = express()
 const PORT = process.env.PORT || 3000
-const __dirname = path.resolve()
 
 app.use(express.json())
 app.use(cookieParser())
@@ -40,14 +38,6 @@ app.use('/api/subscribe', subscribeRoutes)
 app.use('/api/admin/users', adminRoutes)
 app.use('/api/admin/products', productAdminRoutes)
 app.use('/api/admin/orders', adminOrderRoutes)
-
-if(process.env.NODE_ENV === 'production') { 
-    app.use(express.static(path.join(__dirname, '../frontend/dist')))
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../frontend', 'dist', 'index.html'))
-    })
-}
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`)
