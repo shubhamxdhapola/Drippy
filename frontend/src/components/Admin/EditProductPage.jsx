@@ -56,7 +56,7 @@ const EditProductPage = () => {
 
     try {
       setUploading(true);
-      const { data } = await axios.post(
+      const {data} = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/upload`,
         formData,
         {
@@ -65,7 +65,7 @@ const EditProductPage = () => {
       );
       setProductData((prevData) => ({
         ...prevData,
-        images: [...prevData.images, { url: data.imageUrl, altText: "" }],
+        images: [...prevData.images, { url: data.ImageUrl, altText: "" }],
       }));
       setUploading(false);
     } catch (error) {

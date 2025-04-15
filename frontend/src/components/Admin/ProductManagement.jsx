@@ -36,7 +36,7 @@ const ProductManagement = () => {
             {products.length > 0 ? (
               products.map((product) => (
                 <tr
-                  key={products._id}
+                  key={product._id}
                   className="border-b hover:bg-gray-50 cursor-pointer duration-300"
                 >
                   <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
