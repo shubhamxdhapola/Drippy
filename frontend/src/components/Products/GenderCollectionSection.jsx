@@ -8,12 +8,12 @@ const GenderCollectionSection = () => {
     {
       image : mensCollectionImage,
       text : "Men's Collection",
-      query : "mens"
+      query : "Men"
     },
     {
       image : womensCollectionImage,
       text : "Women's Collection",
-      query : "womens"
+      query : "Women"
     },
   ]
 

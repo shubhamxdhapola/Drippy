@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PayPalButton from "./PayPalButton";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice";
-import axios from "axios";
+import { apiClient } from "../../utils/apiClient";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -47,11 +47,10 @@ const Checkout = () => {
 
   const handlePaymentSuccess = async (details) => {
     try {
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
-        { paymentStatus: "paid", paymentDetails: details },
-        { withCredentials: true }
-      );
+      await apiClient.put(`api/checkout/${checkoutId}/pay`, {
+        paymentStatus: "paid",
+        paymentDetails: details,
+      });
       await handleFinalizeCheckout(checkoutId);
     } catch (error) {
       console.log(error);
@@ -60,13 +59,7 @@ const Checkout = () => {
 
   const handleFinalizeCheckout = async (checkoutId) => {
     try {
-      await axios.post(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/checkout/${checkoutId}/finalize`,
-        {},
-        { withCredentials: true }
-      );
+      await apiClient.post(`api/checkout/${checkoutId}/finalize`);
       navigate("/order-confirmation");
     } catch (error) {
       console.log(error);
@@ -243,11 +236,23 @@ const Checkout = () => {
                 />
                 <div>
                   <h3 className="text-md">{product.name}</h3>
-                  <p className="text-gray-500">Size : {product.size}</p>
-                  <p className="text-gray-500">Color : {product.color}</p>
+                  <p className="text-gray-500 text-sm">Size : {product.size}</p>
+                  <p className="text-gray-500 text-sm">
+                    Color : {product.color}
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    Qty : {product.quantity}
+                  </p>
                 </div>
               </div>
-              <p className="text-xl">₹{product.price.toLocaleString()}</p>
+              <div className="flex flex-col justify-between h-[96px] items-end">
+                <p className="text-xl">
+                  ₹{product.price.toLocaleString() * product.quantity}
+                </p>
+                <p className="text-gray-500 text-md">
+                  ₹{product.price.toLocaleString()}/unit
+                </p>
+              </div>
             </div>
           ))}
         </div>

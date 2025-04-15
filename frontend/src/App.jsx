@@ -18,8 +18,21 @@ import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
 import OrderManagement from "./components/Admin/OrderManagement";
 import ProtectedRoute from "./components/Common/ProtectedRoute";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCart } from "./redux/slices/cartSlice";
 
 const App = () => {
+
+  const dispatch = useDispatch()
+  const { user, guestId } = useSelector(state => state.auth)
+
+  useEffect(() => {
+    if(user || guestId) {
+      dispatch(fetchCart({userId : user?._id, guestId}))
+    }
+  }, [user, guestId, dispatch])
+
   return (
     <BrowserRouter>
       <Toaster position="top-center" />

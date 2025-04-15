@@ -1,14 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { apiClient } from "../../utils/apiClient"
 
 export const createCheckout = createAsyncThunk(
     'checkout/createCheckout',
     async(checkoutData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(
-                `${import.meta.env.VITE_BACKEND_URL}/api/checkout`,
-                checkoutData, 
-                {withCredentials : true}
+            const response = await apiClient.post(
+                `/api/checkout`, checkoutData
             )
             return response.data
         } catch(error) {

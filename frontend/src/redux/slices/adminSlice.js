@@ -1,13 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { apiClient } from "../../utils/apiClient"
 
 export const fetchUsers = createAsyncThunk(
     'admin/fetchUsers',
     async() => {
-        const response = await axios.get(
-            `${import.meta.env.VITE_BACKEND_URL}/api/admin/users`,
-            {withCredentials : true}
-        )
+        const response = await apiClient.get(`/api/admin/users`)
         return response.data
     }
 )
@@ -16,10 +13,8 @@ export const addUser = createAsyncThunk(
     'admin/addUser',
     async(userData, {rejectWithValue}) => {
         try {
-            const response = await axios.post(
-                `${import.meta.env.VITE_BACKEND_URL}/api/admin/users`,
-                userData,
-                {withCredentials : true}
+            const response = await apiClient.post(
+                `/api/admin/users`, userData
             )
             return response.data
         } catch(error) {
@@ -31,10 +26,8 @@ export const addUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
     'admin/updateUser',
     async({id, name, email, role}) => {
-        const response = await axios.put(
-            `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}`,
-            {name, email, role},
-            {withCredentials : true}
+        const response = await apiClient.put(
+            `/api/admin/users/${id}`, {name, email, role}
         )
         return response.data.user
     }
@@ -43,10 +36,7 @@ export const updateUser = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
     'admin/deleteUser',
     async(id) => {
-        await axios.delete(
-            `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}`,
-            {withCredentials : true}
-        )
+        await apiClient.delete(`/api/admin/users/${id}`)
         return id
     }
 )

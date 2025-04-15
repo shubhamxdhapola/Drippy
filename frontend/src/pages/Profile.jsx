@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import MyOrdersPage from "./MyOrdersPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../redux/slices/authSlice";
+import { logoutUser } from "../redux/slices/authSlice";
 import { clearCart } from "../redux/slices/cartSlice";
 import Cookies from 'js-cookie';
 
@@ -18,7 +18,7 @@ const Profile = () => {
   }, [user, navigate]);
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logoutUser());
     dispatch(clearCart());
     Cookies.remove('jwt')
     navigate("/login");

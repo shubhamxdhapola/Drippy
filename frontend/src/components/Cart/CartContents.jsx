@@ -80,7 +80,9 @@ const CartContents = ({ cart, userId, guestId }) => {
             </div>
           </div>
           <div className="flex flex-col items-end gap-8">
-            <p className="font-medium">₹{product.price.toLocaleString()}</p>
+            <p className="font-medium">
+              ₹{product.price.toLocaleString() * product.quantity}
+            </p>
             <button
               onClick={() =>
                 handleRemoveFromCart(

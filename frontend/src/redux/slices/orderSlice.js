@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { apiClient } from "../../utils/apiClient"
 
 export const fetchUserOrders = createAsyncThunk(
     'orders/fetchUserOrder',
     async(_, {rejectWithValue}) => {
         try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_BACKEND_URL}/api/orders/my-orders`,
-                {withCredentials : true}
-            )
+            const response = await apiClient.get(`/api/orders/my-orders`)
             return response.data
         } catch(error) {
             return rejectWithValue(error.response.data)
@@ -20,10 +17,7 @@ export const fetchOrderDetails = createAsyncThunk(
     'orders/fetchOrderDetails',
     async(orderId, {rejectWithValue}) => {
         try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`,
-                { withCredentials : true }
-            )
+            const response = await apiClient.get(`/api/orders/${orderId}`)
             return response.data
         } catch(error) {
             return rejectWithValue(error.response.data)

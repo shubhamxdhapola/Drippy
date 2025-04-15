@@ -8,7 +8,7 @@ import ProductDetails from "../components/Products/ProductDetails";
 import ProductGrid from "../components/Products/ProductGrid";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "../redux/slices/productsSlice";
-import axios from "axios";
+import { apiClient } from "../utils/apiClient";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ const Home = () => {
     
     const fetchBestSeller = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/products/best-seller`
+        const response = await apiClient.get(
+          `api/products/best-seller`
         );
         setBestSellerProduct(response.data.bestSellerProduct);
       } catch (error) {

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { clearCart } from '../redux/slices/cartSlice.js'
 
-
 const OrderConfirmationPage = () => {
 
     const dispatch = useDispatch()
@@ -62,7 +61,7 @@ const OrderConfirmationPage = () => {
                                 </p>
                             </div>
                             <div className="ml-auto text-right">
-                                <p className="text-md">₹{item.price}</p>
+                                <p className="text-md">₹{item.price.toLocaleString() * item.quantity}</p>
                                 <p className="text-sm text-gray-500">Qty : {item.quantity}</p>
                             </div>
 
