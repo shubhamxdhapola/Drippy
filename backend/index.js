@@ -20,7 +20,10 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({credentials : true,}))
+app.use(cors({
+    origin : "https://rabbit-e-commerce-five.vercel.app",
+    credentials : true
+}))
 
 app.get('/', (req, res) => {
     res.send("Hey!, Welcome to Rabbit!")
