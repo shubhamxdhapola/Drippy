@@ -25,6 +25,10 @@ app.use(cors({
     credentials : true,
 }))
 
+app.get('/', (req, res) => {
+    res.send("Hey!, Welcome to Rabbit!")
+})
+
 // User routes
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)

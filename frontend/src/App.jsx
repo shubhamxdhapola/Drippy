@@ -21,6 +21,7 @@ import ProtectedRoute from "./components/Common/ProtectedRoute";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart } from "./redux/slices/cartSlice";
+import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
 
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="products/:id/edit" element={<EditProductPage />} />
           <Route path="orders" element={<OrderManagement />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
