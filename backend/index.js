@@ -18,12 +18,13 @@ import adminOrderRoutes from './routes/adminOrderRoutes.js'
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.use(express.json())
-app.use(cookieParser())
 app.use(cors({
     origin : "https://rabbit-e-commerce-five.vercel.app",
     credentials : true
 }))
+
+app.use(express.json())
+app.use(cookieParser())
 
 app.get('/', (req, res) => {
     res.send("Hey!, Welcome to Rabbit!")
