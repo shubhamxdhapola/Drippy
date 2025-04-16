@@ -19,7 +19,7 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 app.use(cors({
-    origin : "https://rabbit-e-commerce-dk78gr7gq-shubhamxdhapolas-projects.vercel.app",
+    origin : process.env.ORIGIN,
     credentials : true
 }))
 
