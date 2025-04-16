@@ -17,6 +17,7 @@ import adminOrderRoutes from './routes/adminOrderRoutes.js'
 
 const app = express()
 
+console.log(process.env.ORIGIN)
 app.use(cors({
     origin : process.env.ORIGIN,
     credentials : true
