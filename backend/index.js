@@ -16,12 +16,13 @@ import productAdminRoutes from './routes/productAdminRoutes.js'
 import adminOrderRoutes from './routes/adminOrderRoutes.js'
 
 const app = express()
-const PORT = process.env.PORT || 3000
 
 app.use(cors({
     origin : process.env.ORIGIN,
     credentials : true
 }))
+
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cookieParser())
