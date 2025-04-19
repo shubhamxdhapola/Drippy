@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchOrderDetails } from "../redux/slices/orderSlice";
+import formatTimestamp from "../utils/formatDateAndTime";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -29,7 +30,7 @@ const OrderDetailsPage = () => {
                 Order ID: #{orderDetails._id}
               </h3>
               <p className="text-gray-600">
-                {new Date(orderDetails.createdAt).toLocaleDateString()}
+                {`${formatTimestamp(orderDetails.createdAt).split(',').splice(0, 3).join(',')} • ${formatTimestamp(orderDetails.createdAt).split(',').pop()}`}
               </p>
             </div>
             <div className="flex flex-col items-start sm:items-end mt-4 sm:mt-0">

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchUserOrders } from "../redux/slices/orderSlice.js";
+import formatTimestamp from "../utils/formatDateAndTime.js";
 
 const MyOrdersPage = () => {
   const navigate = useNavigate();
@@ -54,8 +55,7 @@ const MyOrdersPage = () => {
                     #{order._id}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
-                    {new Date(order.createdAt).toLocaleDateString()}{" "}
-                    {new Date(order.createdAt).toLocaleTimeString()}
+                   {`${formatTimestamp(order.createdAt).split(',').slice(1, 3)}`}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
                     {order.shippingAddress

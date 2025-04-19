@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #root {
-    font-family: 'Roboto Mono', sans-serif, monospace;
+    font-family: 'Outfit', sans-serif, monospace;
     font-optical-sizing: auto;
     font-style: normal;
 }

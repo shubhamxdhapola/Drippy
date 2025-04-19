@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { clearCart } from '../redux/slices/cartSlice.js'
+import formatTimestamp from "../utils/formatDateAndTime.js"
 
 const OrderConfirmationPage = () => {
 
@@ -21,8 +22,13 @@ const OrderConfirmationPage = () => {
   const calulateEstimateDelivery = (createdAt) => {
     const orderDate = new Date(createdAt)
     orderDate.setDate(orderDate.getDate() + 10)
-    return orderDate.toLocaleDateString()
+    return splitDate(orderDate)
   }
+
+  const splitDate = (timestamp) => {
+    return formatTimestamp(timestamp).split(',').slice(0, 3).join(',')
+  }
+  
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white">
         <h1 className="text-4xl font-bold text-center text-emerald-700 mb-6">Thank You for Your Order!</h1>
@@ -35,7 +41,7 @@ const OrderConfirmationPage = () => {
                             Order ID : {checkout._id}
                         </h2>
                         <p className="text-gray-500">
-                            Order Date : {new Date(checkout.createdAt).toLocaleDateString()}
+                            Order Date : {splitDate(checkout.createdAt)}
                         </p>
                     </div>
                     {/* Estimated Delivery */}
