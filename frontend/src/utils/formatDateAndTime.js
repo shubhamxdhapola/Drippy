@@ -10,5 +10,3 @@ export default function formatTimestamp(timestamp) {
             hour12: true 
     })
 }
-
-console.log(formatTimestamp('2025-04-14T17:11:26.597+00:00'))

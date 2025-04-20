@@ -95,12 +95,12 @@ const ProductDetails = ({ productId }) => {
 
             {/* Main Image */}
             <div className="md:w-1/2">
-              <div className="mb-4">
+              <div className="mb-4 h-[463px]">
                 {mainImage && (
                   <img
                     src={mainImage}
                     alt="Main Product"
-                    className="w-full h-auto object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 )}
               </div>
