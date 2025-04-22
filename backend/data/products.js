@@ -1,6 +1,167 @@
-// product.js:
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
-const products = [
+const products = shuffleArray([
+  {
+    "name": "Graphic Cotton T-Shirt",
+    "description": "Elevate your casual look with this breathable cotton t-shirt featuring a bold graphic print. Great for weekend hangouts or relaxed Fridays.",
+    "price": 1599,
+    "discountPrice": 1199,
+    "countInStock": 50,
+    "sku": "GRPH-TSH-101",
+    "category": "Top Wear",
+    "brand": "Urban Crew",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "colors": ["White", "Charcoal Grey", "Olive Green"],
+    "collections": "Casual Wear",
+    "material": "100% Cotton",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-black-venom-graphic-printed-oversized-acid-wash-t-shirt-652355-1742818571-1.jpg",
+        "altText": "Graphic T-Shirt Front View"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-black-venom-graphic-printed-oversized-acid-wash-t-shirt-652355-1729593681-2.jpg",
+        "altText": "Graphic T-Shirt Back View"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-black-venom-graphic-printed-oversized-acid-wash-t-shirt-652355-1729593690-4.jpg",
+        "altText": "Graphic T-Shirt Back View"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-black-venom-graphic-printed-oversized-acid-wash-t-shirt-652355-1729593694-5.jpg",
+        "altText": "Graphic T-Shirt Back View"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-black-venom-graphic-printed-oversized-acid-wash-t-shirt-652355-1729593698-6.jpg",
+        "altText": "Graphic T-Shirt Back View"
+      },
+    ],
+    "rating": 4.5,
+    "numReviews": 28
+  },
+  {
+    "name": "Solid Crew Neck T-Shirt",
+    "description": "A clean and minimalistic crew neck t-shirt that fits just right. Pair it with jeans or joggers for a timeless look.",
+    "price": 1099,
+    "discountPrice": 899,
+    "countInStock": 60,
+    "sku": "SOLID-TSH-203",
+    "category": "Top Wear",
+    "brand": "Essentials",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Maroon", "Sky Blue"],
+    "collections": "Essentials",
+    "material": "Cotton Blend",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://desiminimals.com/cdn/shop/files/8_483ee838-3cd6-454e-8b82-966a0fbf1862.jpg?v=1721214500&width=1080",
+        "altText": "Solid Crew Neck T-Shirt Front View"
+      },
+      {
+        "url": "https://desiminimals.com/cdn/shop/files/5_0f7205fa-31dd-4137-a1d2-3632ddff124f.jpg?v=1721214500&width=1800",
+        "altText": "Solid Crew Neck T-Shirt Side View"
+      },
+      {
+        "url": "https://desiminimals.com/cdn/shop/files/7_1feb5bee-b2df-4ea7-b645-a0746e8ec9f8.jpg?v=1721214500&width=1800",
+        "altText": "Solid Crew Neck T-Shirt Side View"
+      },
+      {
+        "url": "https://desiminimals.com/cdn/shop/files/3_168943a4-64d4-44dc-b4ce-561734274e5a.jpg?v=1721214500&width=1800",
+        "altText": "Solid Crew Neck T-Shirt Side View"
+      },
+      {
+        "url": "https://desiminimals.com/cdn/shop/files/6_75ad826a-19c3-4592-af60-e95479327df3.jpg?v=1721214500&width=1800",
+        "altText": "Solid Crew Neck T-Shirt Side View"
+      },
+    ],
+    "rating": 4.3,
+    "numReviews": 34
+  },
+  {
+    "name": "Oversized Drop Shoulder T-Shirt",
+    "description": "Stay ahead of the fashion curve with this trendy oversized t-shirt. The drop shoulders give it a relaxed street-style vibe.",
+    "price": 1799,
+    "discountPrice": 1499,
+    "countInStock": 40,
+    "sku": "OVRSZ-TSH-312",
+    "category": "Top Wear",
+    "brand": "Street Mode",
+    "sizes": ["M", "L", "XL"],
+    "colors": ["Beige", "Dusty Pink", "Steel Grey"],
+    "collections": "Streetwear",
+    "material": "Organic Cotton",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/24918880/2023/10/26/086396d5-1d38-41d5-b850-18a017d21e341698310263203-Roadster-Men-Tshirts-2631698310262839-1.jpg",
+        "altText": "Oversized Drop Shoulder T-Shirt Front"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/24918880/2023/10/26/61b0b9b1-b37c-466d-9e46-cba1fafb78bd1698310263192-Roadster-Men-Tshirts-2631698310262839-2.jpg",
+        "altText": "Oversized Drop Shoulder T-Shirt Side"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/24918880/2023/10/26/ca701f54-477a-484d-a659-6d89e58d4a2d1698310263180-Roadster-Men-Tshirts-2631698310262839-3.jpg",
+        "altText": "Oversized Drop Shoulder T-Shirt Side"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/24918880/2023/10/26/4cef382f-5f1a-4284-a14b-52b8579feadf1698310263170-Roadster-Men-Tshirts-2631698310262839-4.jpg",
+        "altText": "Oversized Drop Shoulder T-Shirt Side"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/24918880/2023/10/26/b8eb0b01-7073-4a68-9088-83a073df6a121698310263158-Roadster-Men-Tshirts-2631698310262839-5.jpg"
+      },
+    ],
+    "rating": 4.7,
+    "numReviews": 21
+  },
+  {
+    "name": "Henley Neck Full Sleeve T-Shirt",
+    "description": "This Henley tee with a button placket and full sleeves adds a dash of charm to your casual look. Ideal for breezy evenings.",
+    "price": 1399,
+    "discountPrice": 1099,
+    "countInStock": 45,
+    "sku": "HNLY-TSH-420",
+    "category": "Top Wear",
+    "brand": "Classic Threads",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "colors": ["Navy Blue", "Forest Green", "Heather Grey"],
+    "collections": "Winter Edit",
+    "material": "Cotton + Lycra",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20241024/0dLe/6719e23b260f9c41e8987faa/-473Wx593H-700197172-cream-MODEL.jpg",
+        "altText": "Henley Neck T-Shirt Front"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20241024/7SIM/6719e051260f9c41e89878b9/-473Wx593H-700197172-cream-MODEL3.jpg",
+        "altText": "Henley Neck T-Shirt Back"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20241024/Tbju/6719e0d2f9b8ef490bdacf8b/-473Wx593H-700197172-cream-MODEL4.jpg",
+        "altText": "Henley Neck T-Shirt Back"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20241024/Tbju/6719e0d2f9b8ef490bdacf8b/-473Wx593H-700197172-cream-MODEL4.jpg",
+        "altText": "Henley Neck T-Shirt Back"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20241024/Ev3v/6719df1ff9b8ef490bdac5db/-473Wx593H-700197172-cream-MODEL5.jpg",
+        "altText": "Henley Neck T-Shirt Back"
+      },
+    ],
+    "rating": 4.6,
+    "numReviews": 17
+  },
   {
     name: "Slim-Fit Stretch Shirt",
     description:
@@ -68,7 +229,7 @@ const products = [
       {
         url: "https://img.tatacliq.com/images/i20//658Wx734H/MP000000024033631_658Wx734H_202410110708312.jpeg",
         altText: "Classic Oxford Button-Down Shirt Front View",
-      }, 
+      },
       {
         url: "https://img.tatacliq.com/images/i20//658Wx734H/MP000000024033631_658Wx734H_202410110708326.jpeg",
         altText: "Classic Oxford Button-Down Shirt Back View",
@@ -380,7 +541,7 @@ const products = [
       {
         url: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/2024/AUGUST/20/qD0D0x0D_011b7cdb483a479aa6abf1dbab3e9c60.jpg",
         altText: "Off-Shoulder Top",
-      }, 
+      },
       {
         url: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/2024/AUGUST/20/dflEW6L9_a05f05971e4d4553a934889db33837b8.jpg",
         altText: "Off-Shoulder Top",
@@ -642,7 +803,318 @@ const products = [
     rating: 4.4,
     numReviews: 22,
   },
-
-];
+  {
+    "name": "Floral Printed Crop T-Shirt",
+    "description": "Bring a touch of spring to your wardrobe with this floral printed crop tee. Soft fabric and a trendy cut make it perfect for brunch or a day out.",
+    "price": 1399,
+    "discountPrice": 999,
+    "countInStock": 42,
+    "sku": "FLR-CRP-WTSH-001",
+    "category": "Top Wear",
+    "brand": "Bloom Mode",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Peach", "Mint Green", "White"],
+    "collections": "Casual Chic",
+    "material": "Cotton Modal",
+    "gender": "Women",
+    "images": [
+      {
+        "url": "https://img0.junaroad.com/uiproducts/21016456/zoom_0-1708789268.jpg",
+        "altText": "Floral Crop T-Shirt Front View"
+      },
+      {
+        "url": "https://img1.junaroad.com/uiproducts/21016456/zoom_1-1708789268.jpg",
+        "altText": "Floral Crop T-Shirt Side View"
+      },
+      {
+        "url": "https://img0.junaroad.com/uiproducts/21016456/zoom_3-1708789268.jpg",
+        "altText": "Floral Crop T-Shirt Side View"
+      },
+      {
+        "url": "https://img1.junaroad.com/uiproducts/21016456/zoom_4-1708789268.jpg",
+        "altText": "Floral Crop T-Shirt Side View"
+      },
+      {
+        "url": "https://img2.junaroad.com/uiproducts/21016456/zoom_2-1708789268.jpg",
+        "altText": "Floral Crop T-Shirt Side View"
+      },
+    ],
+    "rating": 4.6,
+    "numReviews": 24
+  },
+  {
+    "name": "Oversized Slogan T-Shirt",
+    "description": "Make a statement without saying a word. This oversized tee with a bold slogan pairs well with denims, joggers, or even biker shorts!",
+    "price": 1499,
+    "discountPrice": 1199,
+    "countInStock": 55,
+    "sku": "OVR-SLG-WTSH-014",
+    "category": "Top Wear",
+    "brand": "Fierce Femme",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Lilac", "Grey"],
+    "collections": "Streetwear",
+    "material": "100% Cotton",
+    "gender": "Women",
+    "images": [
+      {
+        "url": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1742814761_6527894.jpg?w=480&dpr=1.5",
+        "altText": "Oversized Slogan T-Shirt Front"
+      },
+      {
+        "url": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1742814761_9534829.jpg?w=480&dpr=1.5",
+        "altText": "Oversized Slogan T-Shirt Back"
+      },
+      {
+        "url": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1742814761_8296327.jpg?format=webp&w=480&dpr=1.5",
+        "altText": "Oversized Slogan T-Shirt Front"
+      },
+      {
+        "url": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1742814761_5589011.jpg?format=webp&w=480&dpr=1.5",
+        "altText": "Oversized Slogan T-Shirt Back"
+      },
+      {
+        "url": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1742814761_2916820.jpg?format=webp&w=480&dpr=1.5",
+        "altText": "Oversized Slogan T-Shirt Back"
+      },
+    ],
+    "rating": 4.4,
+    "numReviews": 31
+  },
+  {
+    "name": "Striped Boat Neck T-Shirt",
+    "description": "Elegant stripes and a boat neckline come together for a refined casual look. Perfect for coffee dates or a stroll through the park.",
+    "price": 1299,
+    "discountPrice": 999,
+    "countInStock": 30,
+    "sku": "STP-BOAT-WTSH-227",
+    "category": "Top Wear",
+    "brand": "Minimal Muse",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": ["Navy White", "Blush Pink", "Mustard"],
+    "collections": "Smart Casuals",
+    "material": "Cotton + Elastane",
+    "gender": "Women",
+    "images": [
+      {
+        "url": "https://styleunion.in/cdn/shop/files/YWFT00065GREY_1_be02e042-4278-4a41-a6ea-decfd945ce11.jpg?v=1741766664&width=1200",
+        "altText": "Striped Boat Neck T-Shirt Front"
+      },
+      {
+        "url": "https://styleunion.in/cdn/shop/files/YWFT00065GREY_2_f1bdc89a-c63c-408f-9b5c-6654229453cd.jpg?v=1741766664&width=1200",
+        "altText": "Striped Boat Neck T-Shirt Side"
+      },
+      {
+        "url": "https://styleunion.in/cdn/shop/files/YWFT00065GREY_3_ac4d7d42-21d7-430f-a74f-76172198d412.jpg?v=1741766664&width=1200",
+        "altText": "Striped Boat Neck T-Shirt Side"
+      },
+      {
+        "url": "https://styleunion.in/cdn/shop/files/YWFT00065GREY_4_e01f55c0-177f-4d22-b53d-d11cdae374f4.jpg?v=1741766664&width=1200",
+        "altText": "Striped Boat Neck T-Shirt Side"
+      },
+      {
+        "url": "https://styleunion.in/cdn/shop/files/YWFT00065GREY_5_c0558865-1027-480c-bc8b-f7c7c451e4b0.jpg?v=1741766664&width=1200",
+        "altText": "Striped Boat Neck T-Shirt Side"
+      },
+    ],
+    "rating": 4.7,
+    "numReviews": 18
+  },
+  {
+    "name": "Full Sleeve Tie-Dye T-Shirt",
+    "description": "Channel your inner artist with this full-sleeve tie-dye tee. Soft, stretchy, and oh-so-colorful—each piece is uniquely yours!",
+    "price": 1599,
+    "discountPrice": 1299,
+    "countInStock": 38,
+    "sku": "TIE-DYE-WTSH-093",
+    "category": "Top Wear",
+    "brand": "Boho Breeze",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Rainbow", "Purple Dream", "Aqua Splash"],
+    "collections": "Bohemian Vibes",
+    "material": "Viscose Rayon",
+    "gender": "Women",
+    "images": [
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20240523/jWnj/664e70d705ac7d77bb71515f/-473Wx593H-700004239-purple-MODEL.jpg",
+        "altText": "Tie-Dye Full Sleeve T-Shirt Front"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20240523/GqFY/664e70d705ac7d77bb7150f5/-473Wx593H-700004239-purple-MODEL6.jpg",
+        "altText": "Tie-Dye Full Sleeve T-Shirt Back"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20240523/GqFY/664e70d705ac7d77bb7150f5/-473Wx593H-700004239-purple-MODEL6.jpg",
+        "altText": "Tie-Dye Full Sleeve T-Shirt Front"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20240523/poHU/664e70d705ac7d77bb71511c/-1117Wx1400H-700004239-purple-MODEL5.jpg",
+        "altText": "Tie-Dye Full Sleeve T-Shirt Back"
+      },
+      {
+        "url": "https://assets.ajio.com/medias/sys_master/root/20240523/GqFY/664e70d705ac7d77bb7150f5/-473Wx593H-700004239-purple-MODEL6.jpg",
+        "altText": "Tie-Dye Full Sleeve T-Shirt Back"
+      },
+    ],
+    "rating": 4.5,
+    "numReviews": 26
+  },
+  {
+    "name": "Relaxed Fit Cargo Pants",
+    "description": "Function meets fashion with these utility-packed cargo pants. Oversized pockets and relaxed fit make them an adventurer's dream.",
+    "price": 2499,
+    "discountPrice": 1999,
+    "countInStock": 46,
+    "sku": "CARGO-RLX-MBW-088",
+    "category": "Bottom Wear",
+    "brand": "Gear & Grind",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "colors": ["Army Green", "Sand", "Dark Brown"],
+    "collections": "Adventure Ready",
+    "material": "Cotton Twill",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/30495265/2024/11/7/90e99a27-ed4c-4db5-b020-584c00f225701730980537966-Roadster-Men-Trousers-4891730980537433-1.jpg",
+        "altText": "Cargo Pants Front"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/30495265/2024/11/7/6b77a784-91de-4935-abf2-1e1bc7f813db1730980537938-Roadster-Men-Trousers-4891730980537433-2.jpg",
+        "altText": "Cargo Pants Side"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/30495265/2024/11/7/16831a04-6a4f-4dc8-89a7-b43fac23f09b1730980537910-Roadster-Men-Trousers-4891730980537433-3.jpg",
+        "altText": "Cargo Pants Front"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/30495265/2024/11/7/f55780ba-f71d-4332-be28-14762f244f841730980537883-Roadster-Men-Trousers-4891730980537433-4.jpg",
+        "altText": "Cargo Pants Side"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/30495265/2024/11/7/484fa494-65ee-43cc-adc5-a1a75fc515e51730980537854-Roadster-Men-Trousers-4891730980537433-5.jpg",
+        "altText": "Cargo Pants Side"
+      },
+    ],
+    "rating": 4.8,
+    "numReviews": 22
+  },
+  {
+    "name": "Distressed Denim Jeans",
+    "description": "Bring in some edge with these distressed denims. Rugged, raw, and built for the rebel in you, they're your weekend partner-in-crime.",
+    "price": 2799,
+    "discountPrice": 2199,
+    "countInStock": 32,
+    "sku": "DST-JEAN-MBW-114",
+    "category": "Bottom Wear",
+    "brand": "Denim Republic",
+    "sizes": ["30", "32", "34", "36"],
+    "colors": ["Washed Blue", "Dark Grey", "Classic Black"],
+    "collections": "Streetwear",
+    "material": "Denim Lycra Blend",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/25483164/2024/1/23/9178ba35-fc0f-474d-ba37-223be305500c1706010717975HIGHLANDERMenRelaxedFitMildlyDistressedLightFadeJeans1.jpg",
+        "altText": "Distressed Jeans Front"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/25483164/2024/1/23/fcc3c273-60a0-4abf-a995-4ca40d1f7a3c1706010717997HIGHLANDERMenRelaxedFitMildlyDistressedLightFadeJeans3.jpg",
+        "altText": "Distressed Jeans Side"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/25483164/2024/1/23/ac631fa0-f8c4-451a-a007-96024ff05fba1706010717986HIGHLANDERMenRelaxedFitMildlyDistressedLightFadeJeans2.jpg",
+        "altText": "Distressed Jeans Front"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/25483164/2024/1/23/cb8ab7a6-a318-41ae-a6c3-45180b80461f1706010718008HIGHLANDERMenRelaxedFitMildlyDistressedLightFadeJeans4.jpg",
+        "altText": "Distressed Jeans Side"
+      },
+      {
+        "url": "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/25483164/2024/1/23/74469c51-6aad-4447-a1a8-60adf88aae331706010718019HIGHLANDERMenRelaxedFitMildlyDistressedLightFadeJeans5.jpg",
+        "altText": "Distressed Jeans Side"
+      },
+    ],
+    "rating": 4.6,
+    "numReviews": 39
+  },
+  {
+    "name": "Cuffed Jogger Pants",
+    "description": "Own the streets in comfort and style with these cuffed joggers. Designed with deep pockets and an adjustable waistband for the ultimate chill fit.",
+    "price": 1899,
+    "discountPrice": 1499,
+    "countInStock": 50,
+    "sku": "JGR-CUFF-MBW-009",
+    "category": "Bottom Wear",
+    "brand": "Motion Mode",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Charcoal Grey", "Black", "Steel Blue"],
+    "collections": "Athleisure",
+    "material": "Cotton Terry",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-charcoal-grey-oversized-joggers-646462-1735884704-1.jpg",
+        "altText": "Jogger Pants Front"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-charcoal-grey-oversized-joggers-646462-1735802755-2.jpg",
+        "altText": "Jogger Pants Side"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-charcoal-grey-oversized-joggers-646462-1735802764-4.jpg",
+        "altText": "Jogger Pants Front"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-charcoal-grey-oversized-joggers-646462-1735802768-5.jpg",
+        "altText": "Jogger Pants Side"
+      },
+      {
+        "url": "https://images.bewakoof.com/t1080/men-s-charcoal-grey-oversized-joggers-646462-1735802772-6.jpg",
+        "altText": "Jogger Pants Side"
+      },
+    ],
+    "rating": 4.5,
+    "numReviews": 28
+  },
+  {
+    "name": "Slim Fit Chinos",
+    "description": "Classic slim-fit chinos crafted for the modern man. Clean lines, soft cotton, and just the right amount of stretch—perfect for office hours or happy hours.",
+    "price": 2299,
+    "discountPrice": 1799,
+    "countInStock": 40,
+    "sku": "SLIM-CHINO-MBW-001",
+    "category": "Bottom Wear",
+    "brand": "Urban Essence",
+    "sizes": ["30", "32", "34", "36"],
+    "colors": ["Beige", "Olive", "Navy Blue"],
+    "collections": "Smart Casuals",
+    "material": "Cotton Stretch",
+    "gender": "Men",
+    "images": [
+      {
+        "url": "https://www.beyoung.in/api/cache/catalog/products/new_chinos_update_image_23_9_2022/light_olive_green_mens_chino_pants_base_29_10_2024_700x933.jpg",
+        "altText": "Slim Fit Chinos Front"
+      },
+      {
+        "url": "https://www.beyoung.in/api/cache/catalog/products/new_chinos_update_image_23_9_2022/light_olive_green_mens_chino_pants_pocket_view_700x933.jpg",
+        "altText": "Slim Fit Chinos Side"
+      },
+      {
+        "url": "https://www.beyoung.in/api/cache/catalog/products/new_chinos_update_image_23_9_2022/light_olive_green_mens_chino_pants_side_view_29_10_2024_700x933.jpg",
+        "altText": "Slim Fit Chinos Front"
+      },
+      {
+        "url": "https://www.beyoung.in/api/cache/catalog/products/new_chinos_update_image_23_9_2022/light_olive_green_mens_chino_pants_back_20_05_2024_700x933.jpg",
+        "altText": "Slim Fit Chinos Side"
+      },
+      {
+        "url": "https://www.beyoung.in/api/cache/catalog/products/new_chinos_update_image_23_9_2022/light_olive_green_mens_chino_pants_model_detail_29_10_2024_700x933.jpg",
+        "altText": "Slim Fit Chinos Side"
+      },
+    ],
+    "rating": 4.7,
+    "numReviews": 33
+  }
+]);
 
 export default products

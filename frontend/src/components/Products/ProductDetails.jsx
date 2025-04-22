@@ -107,7 +107,7 @@ const ProductDetails = ({ productId }) => {
             </div>
 
             {/* Mobile Thumbnails */}
-            <div className="md:hidden flex overscroll-x-auto space-x-4 mb-4">
+            <div className="md:hidden flex overflow-x-auto p-1 space-x-4 mb-4" style={{scrollbarWidth : 'none'}}>
               {selectedProduct.images.map((image, index) => (
                 <img
                   key={index}
@@ -212,7 +212,7 @@ const ProductDetails = ({ productId }) => {
                 {isButtonDisabled ? "Adding..." : "ADD TO CART"}
               </button>
 
-              <div className="mt-10 text-gray-700">
+              {/* <div className="mt-10 text-gray-700">
                 <h3 className="text-xl font-bold mb-4">Characterstics:</h3>
                 <table className="w-full text-left text-sm text-gray-600">
                   <tbody>
@@ -226,7 +226,7 @@ const ProductDetails = ({ productId }) => {
                     </tr>
                   </tbody>
                 </table>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="mt-20">

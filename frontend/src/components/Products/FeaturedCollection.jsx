@@ -1,4 +1,3 @@
-import featured from '../../assets/featured.webp'
 import { Link } from 'react-router-dom'
 
 const FeaturedCollection = () => {
@@ -19,7 +18,7 @@ const FeaturedCollection = () => {
             {/* Right Content */}
             <div className='lg:w-1/2'>
                 <img 
-                    src={featured} 
+                    src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Featured Collection" 
                     className='w-full h-full object-cover lg:rounded-tr-3xl lg:rounded-br-3xl'
                 />

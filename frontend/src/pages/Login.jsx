@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import loginImage from "../assets/login.webp";
 import { IoEye, IoEyeOffSharp } from "react-icons/io5";
 import { loginUser } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,8 +48,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex">
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-8 lg:p-12">
+    <div className="flex justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center p-4 sm:p-8 lg:p-12">
         <form
           className="w-full max-w-md bg-white p-6 md:p-8 rounded-lg border shadow-sm"
           onSubmit={handleSubmit}
@@ -115,16 +114,6 @@ const Login = () => {
             </Link>
           </p>
         </form>
-      </div>
-      {/* Right Side */}
-      <div className="hidden lg:block w-1/2 bg-gray-800">
-        <div className="h-full flex flex-col justify-center items-center">
-          <img
-            src={loginImage}
-            alt="Login to Account"
-            className="h-[650px] w-full object-cover"
-          />
-        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import Product from '../models/product.model.js'
 import products from './products.js'
+import 'dotenv/config'
 
 async function seedProducts() {
     try {

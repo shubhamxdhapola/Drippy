@@ -33,7 +33,7 @@ const Navbar = () => {
           </Link>
         </div>
         {/* Center - Navigations Links */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-6 items-center">
           <Link
             to="/collections/all?gender=Men"
             className="text-gray-700 hover:text-black text-sm font-medium uppercase"
@@ -58,18 +58,17 @@ const Navbar = () => {
           >
             Bottom wear
           </Link>
-        </div>
-        {/* Right - Icons */}
-        <div className="flex items-center space-x-4">
           {user && user.role === "admin" && (
             <Link
               to="/admin"
-              className="block bg-black px-2 rounded text-sm text-white py-1"
+              className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-black hover:text-white duration-300 transition-all"
             >
-              Admin
+              Admin Panel
             </Link>
           )}
-
+        </div>
+        {/* Right - Icons */}
+        <div className="flex items-center space-x-4">
           <Link to="/profile" className="hover:text-black">
             <HiOutlineUser className="h-6 w-6 text-gray-700" />
           </Link>

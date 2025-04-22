@@ -250,7 +250,7 @@ const Checkout = () => {
                   ₹{product.price.toLocaleString() * product.quantity}
                 </p>
                 <p className="text-gray-500 text-md">
-                  ₹{product.price.toLocaleString()}/unit
+                  ₹{Number(product.price).toLocaleString()}/unit
                 </p>
               </div>
             </div>

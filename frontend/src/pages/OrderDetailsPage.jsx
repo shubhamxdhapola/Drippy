@@ -100,9 +100,9 @@ const OrderDetailsPage = () => {
                         {item.name}
                       </Link>
                     </td>
-                    <td className="py-2 px-4">₹{item.price}</td>
+                    <td className="py-2 px-4">₹{item.price.toLocaleString()}</td>
                     <td className="py-2 px-4">{item.quantity}</td>
-                    <td className="py-2 px-4">{item.price * item.quantity}</td>
+                    <td className="py-2 px-4">₹{item.price * item.quantity}</td>
                   </tr>
                 ))}
               </tbody>

@@ -4,8 +4,24 @@ import { RiTwitterXLine } from 'react-icons/ri'
 import { FaFacebookSquare } from "react-icons/fa"
 import { FiPhoneCall } from 'react-icons/fi'
 import { MdEmail } from "react-icons/md"
+import { useState } from "react"
+import { toast } from "sonner"
+import { apiClient } from "../../utils/apiClient"
 
 const Footer = () => {
+
+  const [email, setEmail] = useState("")
+  const handleOnSubmit = async(e) => {
+    e.preventDefault()
+    try {
+        await apiClient.post('/api/subscribe', {email})
+        toast.success("Subscribed Successfully!")
+        setEmail("")
+    } catch(error) {
+        toast.error(error.response.data.message)
+    }
+  }
+
   return (
    <footer className="border-t py-12">
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4 lg:px-0">
@@ -17,10 +33,12 @@ const Footer = () => {
             <p className="mb-6 text-gray-600 font-medium text-sm"> Sign up and get 10% on your first order.</p>
 
             {/* Newsletter Form */}
-            <form className="flex">
+            <form className="flex" onSubmit={handleOnSubmit}>
                 <input 
                     type="email" 
                     placeholder="Enter you email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                     className="p-3 w-full text-sm border-t border-l border-b border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-gray-500 translate-all"
                 />

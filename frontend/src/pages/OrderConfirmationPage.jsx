@@ -67,7 +67,7 @@ const OrderConfirmationPage = () => {
                                 </p>
                             </div>
                             <div className="ml-auto text-right">
-                                <p className="text-md">₹{item.price.toLocaleString() * item.quantity}</p>
+                                <p className="text-md">₹{item.price * item.quantity}</p>
                                 <p className="text-sm text-gray-500">Qty : {item.quantity}</p>
                             </div>
 

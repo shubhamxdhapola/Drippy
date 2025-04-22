@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import registerImage from "../assets/register.webp";
 import { IoEye, IoEyeOffSharp } from "react-icons/io5";
 import { registerUser } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,9 +48,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-row-reverse">
+    <div className="flex justify-center items-center">
       <div
-        className="w-full lg:w-1/2 flex flex-col justify-center items-center p-8 lg:p-12"
+        className="w-full flex flex-col justify-center items-center p-4 sm:p-8 lg:p-12"
         onSubmit={handleSubmit}
       >
         <form className="w-full max-w-md bg-white p-6 md:p-8 rounded-lg border shadow-sm">
@@ -130,7 +129,7 @@ const Register = () => {
         </form>
       </div>
       {/* Right Side */}
-      <div className="hidden lg:block w-1/2 bg-gray-800">
+      {/* <div className="hidden lg:block w-1/2 bg-gray-800">
         <div className="h-full flex flex-col justify-center items-center">
           <img
             src={registerImage}
@@ -138,7 +137,7 @@ const Register = () => {
             className="h-[650px] w-full object-cover"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
