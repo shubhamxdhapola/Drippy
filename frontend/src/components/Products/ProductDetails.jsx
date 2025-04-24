@@ -10,6 +10,7 @@ import {
 } from "../../redux/slices/productsSlice";
 import { addToCart } from "../../redux/slices/cartSlice";
 import ProductDetailsSkeleton from "../Skeletons/ProductDetailsSkeleton";
+import ErrorPage from "../Common/ErrorPage";
 
 const ProductDetails = ({ productId }) => {
   const { id } = useParams();
@@ -70,7 +71,7 @@ const ProductDetails = ({ productId }) => {
   };
 
   if (loading) return <ProductDetailsSkeleton />
-  if (error) return <p className="text-center">Error : {error}</p>;
+  if (error) return  <ErrorPage />
 
   return (
     <div className="p-0 md:p-6">

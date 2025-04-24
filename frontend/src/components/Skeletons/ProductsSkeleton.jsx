@@ -1,6 +1,4 @@
-import React from "react";
-
-const Loader = () => {
+const ProductsSkeleton = () => {
 
   const skeletonArray = Array(8).fill(null)
   return (
@@ -16,4 +14,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default ProductsSkeleton;

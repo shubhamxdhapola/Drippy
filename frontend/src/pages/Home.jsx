@@ -24,12 +24,10 @@ const Home = () => {
         limit: 8,
       })
     );
-    
+
     const fetchBestSeller = async () => {
       try {
-        const response = await apiClient.get(
-          `api/products/best-seller`
-        );
+        const response = await apiClient.get(`api/products/best-seller`);
         setBestSellerProduct(response.data.bestSellerProduct);
       } catch (error) {
         console.log(error);
@@ -42,16 +40,26 @@ const Home = () => {
       <Hero />
       <GenderCollectionSection />
       <NewArrivals />
-      <h2 className="text-center text-3xl font-bold mb-4" data-aos="zoom-in">Best Seller</h2>
+      <h2 className="text-center text-3xl font-bold mb-4" data-aos="zoom-in">
+        Best Seller
+      </h2>
+      <p className="text-center mb-2 text-gray-600"  data-aos="zoom-in">
+        Style icons approved, wardrobe heroes unlocked. These trending pieces
+        are what everyone's wearing—and trust us, you’ll want in.
+      </p>
       {bestSellerProduct ? (
-        <ProductDetails productId={bestSellerProduct._id} />  
+        <ProductDetails productId={bestSellerProduct._id} />
       ) : (
-        <p className="text-center">Loading...</p>
+        <ProductDetailsSkeleton />
       )}
       <div className="container mx-auto">
         <h2 className="text-3xl text-center font-bold mb-4" data-aos="zoom-in">
           Top Wears for Women
         </h2>
+        <p className="text-center mb-8 text-gray-600"  data-aos="zoom-in">
+          From effortless elegance to bold statements, our top picks are made to
+          turn heads and win hearts—your wardrobe’s new obsessions await.
+        </p>
         <ProductGrid products={products} loading={loading} error={error} />
       </div>
       <FeaturedCollection />

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import Loader from "../Common/Loader";
+import ProductsSkeleton from "../Skeletons/ProductsSkeleton";
+import ErrorPage from "../Common/ErrorPage";
 
 const ProductGrid = ({ products, loading, error }) => {
-  if (loading) return <Loader />;
-  if (error) return <p className="text-center">Error...</p>;
+  if (loading) return <ProductsSkeleton />;
+  if (error) return <ErrorPage />
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
