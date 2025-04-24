@@ -3,11 +3,13 @@ import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {LoaderCircle} from 'lucide-react'
 import {
   fetchProductDetails,
   fetchSimilarProducts,
 } from "../../redux/slices/productsSlice";
 import { addToCart } from "../../redux/slices/cartSlice";
+import ProductDetailsSkeleton from "../Skeletons/ProductDetailsSkeleton";
 
 const ProductDetails = ({ productId }) => {
   const { id } = useParams();
@@ -67,7 +69,7 @@ const ProductDetails = ({ productId }) => {
       });
   };
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return <ProductDetailsSkeleton />
   if (error) return <p className="text-center">Error : {error}</p>;
 
   return (
@@ -76,7 +78,7 @@ const ProductDetails = ({ productId }) => {
         <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg">
           <div className="flex flex-col md:flex-row">
             {/* Left Thumbnails */}
-            <div className="hidden md:flex flex-col space-y-4 mr-6">
+            <div className="hidden md:flex flex-col space-y-4 mr-6" data-aos="fade-right">
               {selectedProduct.images.map((image, index) => (
                 <img
                   key={index}
@@ -95,7 +97,7 @@ const ProductDetails = ({ productId }) => {
 
             {/* Main Image */}
             <div className="md:w-1/2">
-              <div className="mb-4 h-[463px]">
+              <div className="mb-4 h-[463px]" data-aos="flip-right">
                 {mainImage && (
                   <img
                     src={mainImage}
@@ -125,7 +127,7 @@ const ProductDetails = ({ productId }) => {
             </div>
 
             {/* Right Side */}
-            <div className="md:w-1/2 md:ml-10">
+            <div className="md:w-1/2 md:ml-10" data-aos="flip-left">
               <h1 className="text-2xl md:text-3xl font-semibold mb-2">
                 {selectedProduct.name}
               </h1>
@@ -203,13 +205,13 @@ const ProductDetails = ({ productId }) => {
               <button
                 onClick={handleAddToCart}
                 disabled={isButtonDisabled}
-                className={`bg-black text-white py-2 px-6 rounded w-full mb-4 ${
+                className={`bg-black text-white py-2 px-6 rounded w-full mb-4 flex justify-center ${
                   isButtonDisabled
                     ? "cursor-not-allowed opacity-50"
                     : "hover:bg-gray-900"
                 }`}
               >
-                {isButtonDisabled ? "Adding..." : "ADD TO CART"}
+                {isButtonDisabled ? <LoaderCircle className="animate-spin text-center" /> : "ADD TO CART"}
               </button>
 
               {/* <div className="mt-10 text-gray-700">
@@ -230,7 +232,7 @@ const ProductDetails = ({ productId }) => {
             </div>
           </div>
           <div className="mt-20">
-            <h2 className="text-2xl text-center font-medium mb-4">
+            <h2 className="text-2xl text-center font-medium mb-4" data-aos="zoom-in"> 
               {" "}
               You May Also Like{" "}
             </h2>

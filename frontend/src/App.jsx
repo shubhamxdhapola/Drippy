@@ -22,6 +22,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart } from "./redux/slices/cartSlice";
 import PageNotFound from "./pages/PageNotFound";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const App = () => {
 
@@ -33,6 +35,10 @@ const App = () => {
       dispatch(fetchCart({userId : user?._id, guestId}))
     }
   }, [user, guestId, dispatch])
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 }); 
+  }, []);  
 
   return (
     <BrowserRouter>

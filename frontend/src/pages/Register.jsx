@@ -4,6 +4,7 @@ import { IoEye, IoEyeOffSharp } from "react-icons/io5";
 import { registerUser } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { mergeCart } from "../redux/slices/cartSlice";
+import { toast } from "sonner";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +19,7 @@ const Register = () => {
 
   useEffect(() => {
     if (user) {
-      if (cart?.products.length > 0 && guestId) {
+      if (cart?.products?.length > 0 && guestId) {
         dispatch(mergeCart({ guestId, user })).then(() => {
           navigate(isCheckoutRedirect ? "/checkout" : "/");
         });
@@ -43,8 +44,15 @@ const Register = () => {
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
-    dispatch(registerUser(formData));
+    if(!formData.name.trim()) return toast.error("Name is required!")
+    if(!formData.email.trim()) return toast.error("Email is required!")
+    if(!formData.password.trim()) return toast.error("Password is required!")
+    dispatch(registerUser(formData))
+    .unwrap()
+    .then(res => toast.success(res.message))
+    .catch(err => toast.error(err.message))
   };
 
   return (

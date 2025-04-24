@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk(
                 `api/users/login`, userData                
             )
             localStorage.setItem('userInfo', JSON.stringify(response.data.user))
-            return response.data.user
+            return {...response.data.user, message : "Logged in successfully!" }
         } catch(error) {
             return rejectWithValue(error.response.data)
         }
@@ -40,7 +40,7 @@ export const registerUser = createAsyncThunk(
                 `api/users/register`, userData                
             )
             localStorage.setItem('userInfo', JSON.stringify(response.data.user))
-            return response.data.user
+            return {...response.data.user, message : "Registered successfully!" }
         } catch(error) {
             return rejectWithValue(error.response.data)
         }

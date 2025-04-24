@@ -25,7 +25,7 @@ const Footer = () => {
   return (
    <footer className="border-t py-12">
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4 lg:px-0">
-        <div className="md:mx-auto">
+        <div className="md:mx-auto" data-aos="fade-right">
             <h3 className="text-lg text-gray-800 mb-4">Newsletter</h3>
             <p className="text-gray-500 mb-4"> 
                 Be the first to hear about new products, exclusive events, and online offers.
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
 
         {/* Support Links */}
-        <div className="md:mx-auto">
+        <div className="md:mx-auto" data-aos="fade-right">
             <h3 className="text-lg text-gray-800 mb-4">Support</h3>
             <ul className="space-y-2 text-gray-600">
                 <li>
@@ -83,7 +83,7 @@ const Footer = () => {
             </ul>
         </div>
         {/* Follow us */}
-        <div className="md:mx-auto">
+        <div className="md:mx-auto" data-aos="fade-left">
             <h3 className="text-lg text-gray-800 mb-4">Follow Us</h3>
             <div className="flex items-center space-x-4 mb-6">
                 <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-gray-500 duration-300">

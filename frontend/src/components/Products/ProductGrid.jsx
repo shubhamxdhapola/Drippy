@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
+import Loader from "../Common/Loader";
 
 const ProductGrid = ({ products, loading, error }) => {
-  if (loading) return <p className="text-center">Loading...</p>;
-  if (error) return <p className="text-center">Loading...</p>;
+  if (loading) return <Loader />;
+  if (error) return <p className="text-center">Error...</p>;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
       {products.map((product, index) => (
-        <Link key={index} to={`/product/${product._id}`} className="block">
+        <Link key={index} to={`/product/${product._id}`} className="block" data-aos="flip-right">
           <div className="bg-white p-4 rounded-lg">
-            <div className="w-full h-[350px] mb-4">
+            <div className="w-full h-[400px]sm:h-[360px] md:h-[350px] mb-4">
               <img
                 src={product.images[0].url}
                 alt={product.images[0].altText || product.name}

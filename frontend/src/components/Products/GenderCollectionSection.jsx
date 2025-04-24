@@ -22,7 +22,7 @@ const GenderCollectionSection = () => {
     <div className='container mx-auto flex flex-col md:flex-row gap-8'>
 
       {genderCollection.map((collection, index) => (
-        <div className='relative flex-1' key={index}>
+        <div className='relative flex-1' key={index} data-aos={`${index === 0 ? "fade-right" : "fade-left" }`}>
           <img src={collection.image} alt={collection.text} className={`w-full h-[500px] object-cover ${index === 0 ? "object-top" : "object-center"} rounded`}/>
           <div className='absolute bottom-8 left-8 bg-white bg-opacity-90 p-4 rounded'>
             <h2 className='text-2xl font-bold text-gray-900 mb-3'>

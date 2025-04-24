@@ -4,14 +4,15 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 const categories = ["Top Wear", "Bottom Wear"]
 const genders = [ "Men", "Women"]
 const sizes = [ "XS",  "S",   "M",   "L",   "XL", "XXL" ]
-const colors = [
-"Red",
-"Blue",
-"Black",
-"Green",
-"Yellow",
-"Gray"
-]
+// const colors = [
+// "Black",
+// "Green",
+// "Gray",
+// "Brown",
+// "lightblue",
+// "orange",
+// "lightpink"
+// ]
 const materials = [
 "Cotton",
 "Polyester",
@@ -21,11 +22,11 @@ const materials = [
 "Denim"
 ]
 const brands = [
-"Nike",
-"Adidas",
+"Urban Crew",
+"Essentials",
 "Puma",
 "Zara",
-"H&M",
+"Elegance",
 "Levi's"
 ]
 
@@ -101,7 +102,7 @@ const FilterSidebar = () => {
   }
 
   return (
-    <div className='p-4'>
+    <div className='p-6' data-aos="fade-right">
         <h3 className='text-xl font-medium text-gray-800 mb-4'></h3>
 
         {/* Category filter */}
@@ -141,7 +142,7 @@ const FilterSidebar = () => {
         </div>
 
         {/* Colors Filter */}
-        <div className='mb-6'>
+        {/* <div className='mb-6'>
             <label className='block text-gray-600 font-medium mb-2'>Color</label>
             <div className='flex flex-wrap gap-2'>
                 {colors.map((color) => (
@@ -156,7 +157,7 @@ const FilterSidebar = () => {
                     </button>
                 ))}
             </div>
-        </div>
+        </div> */}
 
         {/* Size Filter */}
         <div className='mb-6'>

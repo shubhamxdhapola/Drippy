@@ -4,6 +4,7 @@ import { IoEye, IoEyeOffSharp } from "react-icons/io5";
 import { loginUser } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { mergeCart } from "../redux/slices/cartSlice";
+import { toast } from "sonner";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,9 +43,14 @@ const Login = () => {
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    dispatch(loginUser(formData));
+    if(!formData.email.trim()) return toast.error("Email is required!")
+    if(!formData.password.trim()) return toast.error("Password is required!")
+    dispatch(loginUser(formData))
+    .unwrap()
+    .then(res => toast.success(res.message))
+    .catch(err => toast.error(err.message))
   };
 
   return (

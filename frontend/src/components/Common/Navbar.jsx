@@ -27,13 +27,13 @@ const Navbar = () => {
     <>
       <nav className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo Left */}
-        <div>
+        <div data-aos="fade-right">
           <Link to="/" className="text-2xl font-medium">
             Rabbit
           </Link>
         </div>
         {/* Center - Navigations Links */}
-        <div className="hidden md:flex space-x-6 items-center">
+        <div className="hidden md:flex space-x-6 items-center" data-aos="fade-up">
           <Link
             to="/collections/all?gender=Men"
             className="text-gray-700 hover:text-black text-sm font-medium uppercase"
@@ -68,7 +68,7 @@ const Navbar = () => {
           )}
         </div>
         {/* Right - Icons */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4" data-aos="fade-left">
           <Link to="/profile" className="hover:text-black">
             <HiOutlineUser className="h-6 w-6 text-gray-700" />
           </Link>

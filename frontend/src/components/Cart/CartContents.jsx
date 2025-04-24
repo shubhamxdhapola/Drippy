@@ -4,6 +4,7 @@ import {
   removeFromCart,
   updateCartItemQuantity,
 } from "../../redux/slices/cartSlice";
+import { toast } from "sonner";
 
 const CartContents = ({ cart, userId, guestId }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ const CartContents = ({ cart, userId, guestId }) => {
   };
 
   const handleRemoveFromCart = (productId, size, color) => {
-    dispatch(removeFromCart({ productId, guestId, userId, size, color }));
+    dispatch(removeFromCart({ productId, guestId, userId, size, color }))
+    .then(() => toast.success("Product removed from the cart!", { duration: 1000 }))
   };
 
   return (

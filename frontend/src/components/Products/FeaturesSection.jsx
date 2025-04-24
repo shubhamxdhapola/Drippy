@@ -5,7 +5,7 @@ const FeaturesSection = () => {
   <section className='py-16 px-4'>
     <div className='container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center'>
         {/* Feature 1 */}
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center' data-aos="zoom-in">
             <div className='p-4 rounded-full mb-4'>
                 <HiShoppingBag className='text-3xl' />
             </div>
@@ -14,7 +14,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Feature 2 */}
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center' data-aos="zoom-in">
             <div className='p-4 rounded-full mb-4'>
                 <HiArrowPathRoundedSquare className='text-3xl' />
             </div>
@@ -23,7 +23,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Feature 3 */}
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center' data-aos="zoom-in">
             <div className='p-4 rounded-full mb-4'>
                 <HiOutlineCreditCard className='text-3xl' />
             </div>

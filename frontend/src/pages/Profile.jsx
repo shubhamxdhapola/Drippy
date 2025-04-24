@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../redux/slices/authSlice";
 import { clearCart } from "../redux/slices/cartSlice";
 import Cookies from 'js-cookie';
+import { toast } from "sonner";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
@@ -22,6 +23,7 @@ const Profile = () => {
     dispatch(clearCart());
     Cookies.remove('jwt')
     navigate("/login");
+    toast.success("Logged out successfully!")
   };
   return (
     <div className="min-h-screen flex flex-col">
