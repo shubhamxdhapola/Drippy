@@ -18,6 +18,10 @@ const CollectionPage = () => {
   const [ isSidebarOpen, setIsSidebarOpen ] = useState(false)
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [collection])
+
+  useEffect(() => {
     dispatch(fetchProductsByFilters({collection, ...queryParams}))
   }, [dispatch, collection, searchParams])
 

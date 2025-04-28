@@ -29,11 +29,16 @@ const ProductDetails = ({ productId }) => {
   const productFetchId = productId || id;
 
   useEffect(() => {
+      window.scrollTo(0, 0);
+  }, [selectedProduct?._id]);
+
+  useEffect(() => {
     if (productFetchId) {
       dispatch(fetchProductDetails(productFetchId));
       dispatch(fetchSimilarProducts({ id: productFetchId }));
     }
   }, [dispatch, productFetchId]);
+
 
   useEffect(() => {
     if (selectedProduct?.images?.length > 0) {

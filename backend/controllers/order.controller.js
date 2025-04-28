@@ -28,7 +28,6 @@ export const getOrderDetails = async(req, res) => {
 
         res.status(200).json(order)
 
-
     } catch(err) {
         console.log("Error in getOrderDetails controller : ", err)
         res.status(500).json({message : "Internal sever error!"})
