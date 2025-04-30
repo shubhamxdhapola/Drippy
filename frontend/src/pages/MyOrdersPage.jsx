@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchUserOrders } from "../redux/slices/orderSlice.js";
 import formatTimestamp from "../utils/formatDateAndTime.js";
+import { Loader } from "lucide-react";
+import ErrorPage from "../components/Common/ErrorPage.jsx";
 
 const MyOrdersPage = () => {
   const navigate = useNavigate();
@@ -17,8 +19,19 @@ const MyOrdersPage = () => {
     navigate(`/order/${orderId}`);
   };
 
-  if (loading) return <p className="text-center">Loading...</p>
-  if (error) return <p className="text-center">Error...</p>
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <Loader className="text-gray-900 animate-spin" size={30} />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <ErrorPage />;
+      </div>
+    );
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -55,7 +68,9 @@ const MyOrdersPage = () => {
                     #{order._id}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
-                   {`${formatTimestamp(order.createdAt).split(',').slice(1, 3)}`}
+                    {`${formatTimestamp(order.createdAt)
+                      .split(",")
+                      .slice(1, 3)}`}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
                     {order.shippingAddress

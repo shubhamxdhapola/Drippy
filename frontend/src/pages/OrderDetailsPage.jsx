@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchOrderDetails } from "../redux/slices/orderSlice";
 import formatTimestamp from "../utils/formatDateAndTime";
+import { Loader } from "lucide-react";
+import ErrorPage from "../components/Common/ErrorPage";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -13,8 +15,20 @@ const OrderDetailsPage = () => {
     dispatch(fetchOrderDetails(id));
   }, [dispatch, id]);
 
-  if (loading) return <p className="text-center">Loading...</p>;
-  if (error) return <p className="text-center">Error...</p>;
+  console.log(orderDetails);
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <Loader className="text-gray-900 animate-spin" size={30} />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <ErrorPage />;
+      </div>
+    );
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -30,7 +44,12 @@ const OrderDetailsPage = () => {
                 Order ID: #{orderDetails._id}
               </h3>
               <p className="text-gray-600">
-                {`${formatTimestamp(orderDetails.createdAt).split(',').splice(0, 3).join(',')} • ${formatTimestamp(orderDetails.createdAt).split(',').pop()}`}
+                {`${formatTimestamp(orderDetails.createdAt)
+                  .split(",")
+                  .splice(0, 3)
+                  .join(",")} • ${formatTimestamp(orderDetails.createdAt)
+                  .split(",")
+                  .pop()}`}
               </p>
             </div>
             <div className="flex flex-col items-start sm:items-end mt-4 sm:mt-0">
@@ -45,17 +64,20 @@ const OrderDetailsPage = () => {
               </span>
               <span
                 className={`${
-                  orderDetails.isDelivered
-                    ? "bg-green-100 text-green-700"
-                    : "bg-yellow-100 text-yellow-700"
+                  (orderDetails.status === "Delivered" && "bg-green-100 text-green-700" ||
+                  orderDetails.status === "Processing" &&"bg-yellow-100 text-yellow-700" ||
+                  orderDetails.status === "Cancelled" && "bg-red-100 text-red-700" ||
+                  orderDetails.status === "Shipped" && "bg-blue-100 text-blue-700"
+                  )
                 } px-3 py-1 rounded-full text-sm font-medium mb-2`}
               >
-                {orderDetails.isDelivered ? "Delivered" : "Pending"}
+                {/* {orderDetails.isDelivered ? "Delivered" : "Pending"} */}
+                {orderDetails.status}
               </span>
             </div>
           </div>
 
-          {/* Customer, Paument , Shipping Info */}
+          {/* Customer, Payment , Shipping Info */}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
             <div>
@@ -100,7 +122,9 @@ const OrderDetailsPage = () => {
                         {item.name}
                       </Link>
                     </td>
-                    <td className="py-2 px-4">₹{item.price.toLocaleString()}</td>
+                    <td className="py-2 px-4">
+                      ₹{item.price.toLocaleString()}
+                    </td>
                     <td className="py-2 px-4">{item.quantity}</td>
                     <td className="py-2 px-4">₹{item.price * item.quantity}</td>
                   </tr>

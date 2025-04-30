@@ -6,27 +6,40 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import {toast} from 'sonner'
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { logout } from '../../redux/slices/authSlice'
-const AdminSidebar = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
+import { logoutUser } from "../../redux/slices/authSlice";
 
-  const handleLogout = () => {
-    dispatch(logout())
-    navigate("/");
+const AdminSidebar = ({toggleSidebar}) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    await dispatch(logoutUser())
+    .unwrap()
+    .then(() => {
+      toast.success("Logged out successfully!")
+      navigate("/");
+    })
+    .catch(() => toast.error("Unable to logout!"))
   };
   return (
-    <div className="p-6">
+    <div className="p-6 sticky top-0">
       <div className="mb-6">
-        <Link to="/admin" className="text-2xl font-medium">
+        <Link to="/admin" className="text-2xl font-medium" onClick={toggleSidebar}>
           Rabbit
         </Link>
       </div>
-      <h2 className="text-xl font-medium mb-6 text-center">Admin Dashboard</h2>
+      <h2
+        className="text-xl font-medium mb-6 text-center cursor-pointer"
+        onClick={() => navigate("/admin")}
+      >
+        Admin Dashboard
+      </h2>
       <nav className="flex flex-col space-y-2">
         <NavLink
           to="/admin/users"
+          onClick={toggleSidebar}
           className={({ isActive }) =>
             isActive
               ? "bg-gray-700 text-white py-3 px-4 rounded flex items-center space-x-2"
@@ -39,6 +52,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin/products"
+          onClick={toggleSidebar}
           className={({ isActive }) =>
             isActive
               ? "bg-gray-700 text-white py-3 px-4 rounded flex items-center space-x-2"
@@ -51,6 +65,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin/orders"
+          onClick={toggleSidebar}
           className={({ isActive }) =>
             isActive
               ? "bg-gray-700 text-white py-3 px-4 rounded flex items-center space-x-2"

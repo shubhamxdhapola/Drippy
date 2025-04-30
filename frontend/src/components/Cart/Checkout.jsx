@@ -4,6 +4,8 @@ import PayPalButton from "./PayPalButton";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice";
 import { apiClient } from "../../utils/apiClient";
+import { Loader } from "lucide-react";
+import ErrorPage from "../Common/ErrorPage";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -66,8 +68,20 @@ const Checkout = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <Loader className="text-gray-900 animate-spin" size={30} />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <ErrorPage />;
+      </div>
+    );
+
   if (!cart || !cart.products || cart.products.length === 0) {
     return <p className="text-center">Your cart is empty!</p>;
   }
@@ -89,7 +103,7 @@ const Checkout = () => {
             />
           </div>
           <h3 className="text-lg mb-4">Delivery</h3>
-          <div className="mb-4 grid grid-cols-2 gap-4">
+          <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-gray-700">First Name</label>
               <input
@@ -136,7 +150,7 @@ const Checkout = () => {
               required
             />
           </div>
-          <div className="mb-4 grid grid-cols-2 gap-4">
+          <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-gray-700">City </label>
               <input

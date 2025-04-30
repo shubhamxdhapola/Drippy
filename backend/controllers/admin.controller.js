@@ -28,7 +28,7 @@ export const addUser = async(req, res) => {
         
         const user = await User.findOne({email})
         if(user) {
-            return res.status(404).json({message : "User already exists!"})
+            return res.status(400).json({message : "User already exists!"})
         }
 
         const newUser = await User.create({
@@ -113,7 +113,7 @@ export const getOrders = async(req, res) => {
         const orders = await Order.find({}).populate('user', 'name email')
 
         if(orders.length === 0) {
-            return res.status(404).json({message : "No orders found!"})
+            return res.status(200).json({message : "No orders found!"})
         }
 
         res.status(200).json(orders)

@@ -10,7 +10,6 @@ import {
 } from "../../redux/slices/productsSlice";
 import { addToCart } from "../../redux/slices/cartSlice";
 import ProductDetailsSkeleton from "../Skeletons/ProductDetailsSkeleton";
-import ErrorPage from "../Common/ErrorPage";
 
 const ProductDetails = ({ productId }) => {
   const { id } = useParams();
@@ -76,7 +75,12 @@ const ProductDetails = ({ productId }) => {
   };
 
   if (loading) return <ProductDetailsSkeleton />
-  if (error) return  <ErrorPage />
+  if (error)
+    return (
+      <div className="flex justify-center items-center">
+        <span>Something went wrong! Unable to fetch this product</span>
+      </div>
+    );
 
   return (
     <div className="p-0 md:p-6">

@@ -86,6 +86,7 @@ const CartContents = ({ cart, userId, guestId }) => {
               ₹{product.price.toLocaleString() * product.quantity}
             </p>
             <button
+              className="tooltip tooltip-left" data-tip="Remove"
               onClick={() =>
                 handleRemoveFromCart(
                   product.productId,

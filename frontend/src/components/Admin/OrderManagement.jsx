@@ -1,31 +1,50 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchAllOrders, updateOrderStatus } from "../../redux/slices/adminOrdersSlice";
+import {
+  fetchAllOrders,
+  updateOrderStatus,
+} from "../../redux/slices/adminOrdersSlice";
+import { Loader } from "lucide-react";
+import ErrorPage from "../Common/ErrorPage";
+import { toast } from "sonner";
 
 const OrderManagement = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  const { user } = useSelector((state) => state.auth)
-  const { orders, loading, error } = useSelector((state) => state.adminOrders)
+  const { user } = useSelector((state) => state.auth);
+  const { orders, loading, error } = useSelector((state) => state.adminOrders);
 
   useEffect(() => {
-    if(!user || user.role !== 'admin') {
-      navigate('/')
+    if (!user || user.role !== "admin") {
+      navigate("/");
     } else {
-      dispatch(fetchAllOrders())
+      dispatch(fetchAllOrders());
     }
-  }, [dispatch, user, navigate])
+  }, [dispatch, user, navigate]);
 
   const handleStatusChange = (orderId, status) => {
-    dispatch(updateOrderStatus({id : orderId, status}))
-  }
+    dispatch(updateOrderStatus({ id: orderId, status }))
+      .unwrap()
+      .then(() => toast.success("Status updated successfully!"))
+      .catch(() => toast.error("Unable to update status!"));
+  };
 
-  if(loading) return <p>Loading...</p>
-  if(error) return <p>Error...</p>
-  
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader className="text-gray-900 animate-spin" size={30} />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ErrorPage />;
+      </div>
+    );
+
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Order Management</h2>
@@ -58,7 +77,7 @@ const OrderManagement = () => {
                       onChange={(e) =>
                         handleStatusChange(order._id, e.target.value)
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                      className="select select-bordered w-full max-w-[150px]"
                     >
                       <option value="Processing">Processing</option>
                       <option value="Shipped">Shipped</option>
@@ -69,7 +88,12 @@ const OrderManagement = () => {
                   <td className="p-4">
                     <button
                       onClick={() => handleStatusChange(order._id, "Delivered")}
-                      className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 duration-300"
+                      className={`${
+                        order.status === "Delivered"
+                          ? "bg-gray-200 cursor-not-allowed "
+                          : "bg-green-500 text-white hover:bg-green-600 duration-300"
+                      } px-4 py-2 rounded`}
+                      disabled={order.status === "Delivered"}
                     >
                       Mark as Delivered
                     </button>
@@ -78,8 +102,8 @@ const OrderManagement = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={4} className="p-4 text-center text-gray-500">
-                  No Orders Found.
+                <td colSpan={5} className="p-4 text-center text-gray-500">
+                  No orders found
                 </td>
               </tr>
             )}

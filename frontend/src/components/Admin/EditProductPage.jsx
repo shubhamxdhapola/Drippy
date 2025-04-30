@@ -4,6 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { fetchProductDetails } from "../../redux/slices/productsSlice";
 import { updateProduct } from "../../redux/slices/adminProductsSlice";
 import { apiClient } from "../../utils/apiClient";
+import { Loader } from "lucide-react";
+import ErrorPage from "../Common/ErrorPage";
+import { toast } from "sonner";
 
 const EditProductPage = () => {
   const dispatch = useDispatch();
@@ -56,12 +59,9 @@ const EditProductPage = () => {
 
     try {
       setUploading(true);
-      const {data} = await apiClient.post(
-        `api/upload`, formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const { data } = await apiClient.post(`api/upload`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       setProductData((prevData) => ({
         ...prevData,
         images: [...prevData.images, { url: data.ImageUrl, altText: "" }],
@@ -75,12 +75,26 @@ const EditProductPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProduct({ id, productData}));
+    dispatch(updateProduct({ id, productData }))
+    .unwrap()
+    .then(() => toast.success("Product updated successfully!"))
+    .catch(() => toast.error("Unable to update product"))
     navigate("/admin/products");
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error...</p>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader className="text-gray-900 animate-spin" size={30} />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ErrorPage />
+      </div>
+    );
 
   return (
     <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">

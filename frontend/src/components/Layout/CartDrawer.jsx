@@ -2,12 +2,26 @@ import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import CartContents from "../Cart/CartContents";
+import { useEffect, useRef } from "react";
 
-const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
+const CartDrawer = ({ cartDrawerOpen, toggleCartDrawer, setCartDrawerOpen }) => {
   const navigate = useNavigate();
   const { user, guestId } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
   const userId = user ? user._id : null;
+  const cartRef = useRef(null)
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if(cartRef.current && !cartRef.current.contains(e.target)) {
+        setCartDrawerOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return() => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  })
 
   const handleCheckout = () => {
     toggleCartDrawer();
@@ -20,12 +34,13 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
 
   return (
     <div
+      ref={cartRef}
       className={`fixed top-0 right-0 w-5/6 sm:w-1/2 md:w-[30rem] h-full bg-white shadow-lg transform transition-transform duration-300 flex flex-col z-50 
-      ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+      ${cartDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
     >
       {/* Close Button */}
       <div className="flex justify-end p-4">
-        <button onClick={toggleCartDrawer}>
+        <button className="tooltip tooltip-left" onClick={toggleCartDrawer} data-tip="Close">
           <IoMdClose className="h-6 w-6 text-gray-600" />
         </button>
       </div>

@@ -25,11 +25,15 @@ export const addUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
     'admin/updateUser',
-    async({id, name, email, role}) => {
-        const response = await apiClient.put(
-            `/api/admin/users/${id}`, {name, email, role}
-        )
-        return response.data.user
+    async({id, name, email, role}, {rejectWithValue}) => {
+        try {
+            const response = await apiClient.put(
+                `/api/admin/users/${id}`, {name, email, role}
+            )
+            return response.data.user
+        } catch(error) {
+            return rejectWithValue(error.response.data)
+        }
     }
 )
 
@@ -46,7 +50,8 @@ const adminSlice = createSlice({
     initialState : {
         users : [],
         loading : false,
-        error : null
+        error : null,
+        addUserLoading : false,
     },
     reducers : {},
     extraReducers : (builder) => {
@@ -63,6 +68,7 @@ const adminSlice = createSlice({
             state.error = action.error.message
         })
         .addCase(updateUser.fulfilled, (state, action) => {
+            state.roleLoading = false
             const updatedUser = action.payload
             const userIndex = state.users.findIndex(
                 (user) => user._id === updatedUser._id
@@ -72,19 +78,23 @@ const adminSlice = createSlice({
             }
         })
         .addCase(deleteUser.fulfilled, (state, action) => {
+            state.deleteUserLoading = false
             state.users = state.users.filter((user) => user._id !== action.payload)
         })
+        .addCase(deleteUser.rejected, (state, action) => {
+            state.error = action.error.message
+        })
         .addCase(addUser.pending, (state) => {
-            state.loading = true
+            state.addUserLoading = true
             state.error = null
         })
         .addCase(addUser.fulfilled, (state, action) => {
-            state.loading = false
-            state.users.push(action.payload.user) 
+            state.addUserLoading = false
+            state.users.push(action.payload?.user) 
         })
         .addCase(addUser.rejected, (state, action) => {
-            state.loading = false
-            state.error = action.payload.message
+            state.addUserLoading = false
+            state.error = action.error.message
         })
     }
 })

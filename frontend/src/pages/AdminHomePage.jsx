@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchAdminProducts } from '../redux/slices/adminProductsSlice.js'
-import { fetchAllOrders } from '../redux/slices/adminOrdersSlice.js'
+import { fetchAdminProducts } from "../redux/slices/adminProductsSlice.js";
+import { fetchAllOrders } from "../redux/slices/adminOrdersSlice.js";
+import ErrorPage from "../components/Common/ErrorPage.jsx";
+import { Loader } from "lucide-react";
 
 const AdminHomePage = () => {
+  const skeletonArray = Array(3).fill(null);
   const dispatch = useDispatch();
   const {
     products,
@@ -20,43 +23,53 @@ const AdminHomePage = () => {
   } = useSelector((state) => state.adminOrders);
 
   useEffect(() => {
-    dispatch(fetchAdminProducts())
-    dispatch(fetchAllOrders())
-  }, [dispatch])
+    dispatch(fetchAdminProducts());
+    dispatch(fetchAllOrders());
+  }, [dispatch]);
+
+  if (productsError || ordersError)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ErrorPage />
+      </div>
+    );
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
-      {productsLoading || ordersLoading ? (
-        <p>Loading...</p>
-      ) : productsError ? (
-        <p>Error in fetching products</p>
-      ) : ordersError ? (
-        <p>Error in fetching orders</p>
-      ) : (
-
+      {productsLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="p-4 shadow-md rounded-lg">
-          <h2 className="text-xl font-semibold">Revenue</h2>
-          <p className="text-xl">₹{totalSales.toFixed(2)}</p>
+          {skeletonArray.map((_, index) => (
+            <div key={index} className="flex w-full flex-col gap-3">
+              <div className="skeleton h-[110px] rounded-lg"></div>
+            </div>
+          ))}
         </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-4 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Revenue</h2>
+            <p className="text-xl">₹{totalSales?.toFixed(2)}</p>
+          </div>
 
-        <div className="p-4 shadow-md rounded-lg">
-          <h2 className="text-xl font-semibold">Total Orders</h2>
-          <p className="text-xl">{totalOrders}</p>
-          <Link to="/admin/orders" className="text-blue-500 hover:underline">
-            Manage Orders
-          </Link>
-        </div>
-      
+          <div className="p-4 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Total Orders</h2>
+            <p className="text-xl">{totalOrders}</p>
+            <Link to="/admin/orders" className="text-blue-500 hover:underline">
+              Manage Orders
+            </Link>
+          </div>
 
-        <div className="p-4 shadow-md rounded-lg">
-          <h2 className="text-xl font-semibold">Total Products</h2>
-          <p className="text-xl">{products.length}</p>
-          <Link to="/admin/products" className="text-blue-500 hover:underline">
-            Manage Products
-          </Link>
+          <div className="p-4 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Total Products</h2>
+            <p className="text-xl">{products.length}</p>
+            <Link
+              to="/admin/products"
+              className="text-blue-500 hover:underline"
+            >
+              Manage Products
+            </Link>
+          </div>
         </div>
-      </div>
       )}
       <div className="mt-6">
         <h2 className="text-xl font-bold mb-4">Recent Orders</h2>
@@ -85,6 +98,10 @@ const AdminHomePage = () => {
                     <td className="p-4">{order.status}</td>
                   </tr>
                 ))
+              ) : ordersLoading ? (
+                <td colSpan={4} className="p-4 text-center text-grau-500">
+                  <Loader className="animate-spin mx-auto" size={30} />
+                </td>
               ) : (
                 <tr>
                   <td colSpan={4} className="p-4 text-center text-grau-500">

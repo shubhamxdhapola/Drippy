@@ -5,13 +5,14 @@ import { loginUser } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { mergeCart } from "../redux/slices/cartSlice";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, guestId } = useSelector((state) => state.auth);
+  const { user, guestId, loading } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
 
   const redirect = new URLSearchParams(location.search).get("redirect") || "/";
@@ -106,9 +107,10 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-black text-white p-2 rounded-lg font-semibold hover:bg-gr800 transition-all duration-300"
+            className={`w-full ${loading ? 'bg-gray-600 cursor-not-allowed': 'bg-black'} text-white p-2 rounded-lg font-semibold hover:bg-gr800 transition-all duration-300`}
+            disabled={loading}
           >
-            Sign In
+            {loading ? <Loader2 className="animate-spin mx-auto"/> : "Sign In"}
           </button>
           <p className="mt-6 text-center text-sm">
             Don't have an account?&nbsp;

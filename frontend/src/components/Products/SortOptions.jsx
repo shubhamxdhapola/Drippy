@@ -17,7 +17,7 @@ const SortOptions = () => {
         value={searchParams.get("sortBy") || ""}
         className="select select-bordered w-full max-w-[200px]"
       >
-        <option selected value="">Default</option>
+        <option value="">Default</option>
         <option value="priceAsc">Price : Low to High</option>
         <option value="priceDesc">Price : High to Low</option>
         <option value="popularity">Popularity</option>

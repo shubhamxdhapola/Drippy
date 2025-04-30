@@ -6,21 +6,34 @@ import {
 } from "react-icons/hi2";
 import SearchBar from "./SearchBar";
 import CartDrawer from "../Layout/CartDrawer";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
   const { cart } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
+  const navRef = useRef(null)
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if(navRef.current && !navRef.current.contains(e.target)) {        
+        setNavDrawerOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const cartItemCount =
     cart?.products?.reduce((total, product) => total + product.quantity, 0) ||
     0;
 
-  const toggleCartDrawer = () => setDrawerOpen(!drawerOpen);
+  const toggleCartDrawer = () => setCartDrawerOpen(!cartDrawerOpen);
   const toggleNavDrawer = () => setNavDrawerOpen(!navDrawerOpen);
 
   return (
@@ -33,7 +46,10 @@ const Navbar = () => {
           </Link>
         </div>
         {/* Center - Navigations Links */}
-        <div className="hidden md:flex space-x-6 items-center" data-aos="fade-up">
+        <div
+          className="hidden md:flex space-x-6 items-center"
+          data-aos="fade-up"
+        >
           <Link
             to="/collections/all?gender=Men"
             className="text-gray-700 hover:text-black text-sm font-medium uppercase"
@@ -61,7 +77,7 @@ const Navbar = () => {
           {user && user.role === "admin" && (
             <Link
               to="/admin"
-              className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-black hover:text-white duration-300 transition-all"
+              className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-rabbit-green hover:border-rabbit-green hover:text-white duration-300 transition-all"
             >
               Admin Panel
             </Link>
@@ -69,11 +85,11 @@ const Navbar = () => {
         </div>
         {/* Right - Icons */}
         <div className="flex items-center space-x-4" data-aos="fade-left">
-          <Link to="/profile" className="hover:text-black">
+          <Link to="/profile" className="hover:text-black tooltip" data-tip="Profile">
             <HiOutlineUser className="h-6 w-6 text-gray-700" />
           </Link>
           <button
-            className="relative hover:text-black"
+            className="relative hover:text-black tooltip" data-tip="Cart"
             onClick={toggleCartDrawer}
           >
             <HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
@@ -92,10 +108,11 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <CartDrawer drawerOpen={drawerOpen} toggleCartDrawer={toggleCartDrawer} />
+      <CartDrawer cartDrawerOpen={cartDrawerOpen} toggleCartDrawer={toggleCartDrawer} setCartDrawerOpen={setCartDrawerOpen} />
 
       {/* Mobile Navigation */}
       <div
+        ref={navRef}
         className={`fixed top-0 left-0 w-5/6 sm:w-1/2 md:w-[30rem] h-full bg-white shadow-lg transform transition-transform duration-300 flex flex-col z-50 md:hidden
         ${navDrawerOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
@@ -135,6 +152,15 @@ const Navbar = () => {
             >
               Bottom Wear
             </Link>
+            {user && user.role === "admin" && (
+              <Link
+                to="/admin"
+                onClick={toggleNavDrawer}
+                className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-rabbit-green hover:border-rabbit-green hover:text-white duration-300 transition-all"
+              >
+                Admin Panel
+              </Link>
+            )}
           </nav>
         </div>
       </div>

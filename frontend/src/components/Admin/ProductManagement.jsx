@@ -1,24 +1,45 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteProduct, fetchAdminProducts } from "../../redux/slices/adminProductsSlice";
+import { Loader, Settings, Trash2 } from "lucide-react";
+import {
+  deleteProduct,
+  fetchAdminProducts,
+} from "../../redux/slices/adminProductsSlice";
+import ErrorPage from "../Common/ErrorPage";
+import { toast } from "sonner";
 
 const ProductManagement = () => {
-
-  const dispatch = useDispatch()
-  const { products, loading, error } = useSelector(state => state.adminProducts)
+  const dispatch = useDispatch();
+  const { products, loading, error } = useSelector(
+    (state) => state.adminProducts
+  );
 
   useEffect(() => {
-    dispatch(fetchAdminProducts())
-  }, [dispatch])
+    dispatch(fetchAdminProducts());
+  }, [dispatch]);
 
   const handleDeleteProduct = (productId) => {
     dispatch(deleteProduct(productId))
+      .unwrap()
+      .then(() => toast.success("Product deleted successfully!"))
+      .catch(() => toast.error("Unable to delete product!"));
   };
 
-  if(loading) return <p>Loading...</p>
-  if(error) return <p>Error...</p>
-  
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader className="text-gray-900 animate-spin" size={30} />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ErrorPage />;
+      </div>
+    );
+
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Product Management</h2>
@@ -44,18 +65,20 @@ const ProductManagement = () => {
                   </td>
                   <td className="p-4">₹{product.price.toLocaleString()}</td>
                   <td className="p-4">{product.sku}</td>
-                  <td className="p-4">
+                  <td className="p-4 flex items-center gap-2">
                     <Link
                       to={`/admin/products/${product._id}/edit`}
-                      className="bg-yellow-500 text-white px-2 py-1 rounded mr-2 hover:bg-yellow-600 duration-300"
+                      className="text-gray-800 hover:text-gray-900 duration-300 tooltip"
+                      data-tip="Edit"
                     >
-                      Edit
+                      <Settings />
                     </Link>
                     <button
                       onClick={() => handleDeleteProduct(product._id)}
-                      className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 duration-300"
+                      className="text-gray-800 hover:text-gray-900 duration-300 tooltip"
+                      data-tip="Delete"
                     >
-                      Delete
+                      <Trash2 />
                     </button>
                   </td>
                 </tr>

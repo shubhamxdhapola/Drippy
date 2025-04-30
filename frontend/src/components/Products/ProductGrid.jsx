@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 import ProductsSkeleton from "../Skeletons/ProductsSkeleton";
-import ErrorPage from "../Common/ErrorPage";
 
 const ProductGrid = ({ products, loading, error }) => {
   if (loading) return <ProductsSkeleton />;
-  if (error) return <ErrorPage />
+  if (error)
+    return (
+      <div className="flex justify-center items-center">
+        <span>Something went wrong! Unable to fetch products</span>
+      </div>
+    );
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
       {products.map((product, index) => (
-        <Link key={index} to={`/product/${product._id}`} className="block" data-aos="flip-right">
+        <Link
+          key={index}
+          to={`/product/${product._id}`}
+          className="block"
+          data-aos="flip-right"
+        >
           <div className="bg-white p-4 rounded-lg">
             <div className="w-full h-[430px] sm:h-[360px] md:h-[350px] mb-4">
               <img

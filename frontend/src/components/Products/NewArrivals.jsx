@@ -35,6 +35,7 @@ const NewArrivals = () => {
 
   const [newArrivals, setNewArrivals] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchNewArrivals = async () => {
@@ -45,9 +46,9 @@ const NewArrivals = () => {
         );
         setNewArrivals(response.data.newArrivals);
         setLoading(false);
-      } catch (error) {
-        console.log(error);
+      } catch {
         setLoading(false);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -69,6 +70,10 @@ const NewArrivals = () => {
         {/* Scrollable Content  */}
         {loading ? (
           <NewArrivalsSkeleton />
+        ) : error ? (
+          <div className="flex justify-center items-center">
+            <span>Something went wrong! Unable to fetch the products</span>
+          </div>
         ) : (
           <>
             <Slider ref={sliderRef} {...settings}>
