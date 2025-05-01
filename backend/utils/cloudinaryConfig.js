@@ -9,11 +9,11 @@ cloudinary.config({
     api_secret : process.env.CLOUDINARY_API_SECRET
 })
 
-const rabbitStorage = new CloudinaryStorage({
+const drippyStorage = new CloudinaryStorage({
     cloudinary, 
     params : {
-        folder : 'Rabbit_Storage'
+        folder : 'Drippy_Storage'
     }
 })
 
-export { cloudinary, rabbitStorage }
+export { cloudinary, drippyStorage }

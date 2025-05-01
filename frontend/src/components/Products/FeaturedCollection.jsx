@@ -5,17 +5,17 @@ const FeaturedCollection = () => {
     <section className="py-16 px-4 lg:px-0">
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center bg-green-50 rounded-3xl">
         {/* Left Content */}
-        <div className="lg:w-1/2 p-8 text-center lg:text-left">
+        <div className="lg:w-1/2 p-6 sm:p-8 text-center lg:text-left">
           <div data-aos="fade-right">
             <h2 className="text-lg font-semibold text-gray-700 mb-2">
               {" "}
               Comfort and Style{" "}
             </h2>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
               {" "}
               Apparel made for your everyday life{" "}
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-md sm:text-lg text-gray-600 mb-6">
               Discover high quality, comfortable clothing that effortlessly
               blend fashion and function, Designed to make you look and feel
               great everyday.
@@ -34,7 +34,7 @@ const FeaturedCollection = () => {
             <img
               src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Featured Collection"
-              className="w-full h-full object-cover lg:rounded-tr-3xl lg:rounded-br-3xl"
+              className="w-full h-full object-cover rounded-tr-3xl rounded-tl-3xl lg:rounded-tr-3xl lg:rounded-br-3xl lg:rounded-tl-none"
             />
           </div>
         </div>

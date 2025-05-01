@@ -19,7 +19,7 @@ const ProductGrid = ({ products, loading, error }) => {
           className="block"
           data-aos="flip-right"
         >
-          <div className="bg-white p-4 rounded-lg">
+          <div className="bg-white p-2 sm:p-4 rounded-lg">
             <div className="w-full h-[430px] sm:h-[360px] md:h-[350px] mb-4">
               <img
                 src={product.images[0].url}

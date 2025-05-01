@@ -41,10 +41,16 @@ const Home = () => {
       <Hero />
       <GenderCollectionSection />
       <NewArrivals />
-      <h2 className="text-center text-3xl font-bold mb-4" data-aos="zoom-in">
+      <h2
+        className="text-center text-2xl sm:text-3xl font-bold mb-4"
+        data-aos="zoom-in"
+      >
         Best Seller
       </h2>
-      <p className="text-center mb-2 text-gray-600 px-4" data-aos="zoom-in">
+      <p
+        className="text-sm md:text-md text-center mb-2 text-gray-600 px-4"
+        data-aos="zoom-in"
+      >
         Style icons approved, wardrobe heroes unlocked. These trending pieces
         are what everyone's wearing—and trust us, you’ll want in.
       </p>
@@ -52,20 +58,30 @@ const Home = () => {
         <ProductDetails productId={bestSellerProduct._id} />
       ) : bestSellerError ? (
         <div className="flex justify-center items-center mb-[100px]">
-          <span className="mt-7">Something went wrong! Unable to fetch this product</span>
+          <span className="mt-7">
+            Something went wrong! Unable to fetch this product
+          </span>
         </div>
       ) : (
         <ProductDetailsSkeleton />
       )}
       <div className="container mx-auto">
-        <h2 className="text-3xl text-center font-bold mb-4" data-aos="zoom-in">
+        <h2
+          className="text-2xl sm:text-3xl text-center font-bold mb-4"
+          data-aos="zoom-in"
+        >
           Top Wears for Women
         </h2>
-        <p className="text-center mb-8 text-gray-600 px-4" data-aos="zoom-in">
+        <p
+          className="text-sm md:text-md text-center mb-8 text-gray-600 px-4"
+          data-aos="zoom-in"
+        >
           From effortless elegance to bold statements, our top picks are made to
           turn heads and win hearts—your wardrobe’s new obsessions await.
         </p>
-        <ProductGrid products={products} loading={loading} error={error} />
+        <div className="px-2">
+          <ProductGrid products={products} loading={loading} error={error} />
+        </div>
       </div>
       <FeaturedCollection />
       <FeaturesSection />

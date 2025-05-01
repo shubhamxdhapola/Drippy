@@ -62,7 +62,7 @@ const Login = () => {
           onSubmit={handleSubmit}
         >
           <div className="flex justify-center mb-6">
-            <h2 className="text-xl font-medium">Rabbit</h2>
+            <h2 className="text-2xl font-medium logo">Drippy</h2>
           </div>
           <h2 className="text-2xl font-bold text-center mb-3">Hey there!</h2>
           <p className="text-center mb-6 text-sm md:text-md">

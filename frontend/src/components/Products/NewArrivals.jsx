@@ -9,7 +9,7 @@ const NewArrivals = () => {
   const sliderRef = useRef(null);
 
   const settings = {
-    dots: true,
+    dots: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
@@ -57,12 +57,12 @@ const NewArrivals = () => {
   }, []);
 
   return (
-    <section className="py-16 px-4 lg:px-0">
+    <section className="py-16 px-2 sm:px-4 lg:px-0">
       <div className="container mx-auto text-center mb-10 relative">
-        <h2 className="text-3xl font-bold mb-4" data-aos="zoom-in">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4" data-aos="zoom-in">
           Explore New Arrivals
         </h2>
-        <p className="text-gray-600 mb-8" data-aos="zoom-in">
+        <p className="text-gray-600 text-sm sm:text-md mb-8" data-aos="zoom-in">
           Discover the latest styles straight off the runway, freshly added to
           keep your wardrobe on the cutting edge of fashion.
         </p>
@@ -99,7 +99,7 @@ const NewArrivals = () => {
             </Slider>
 
             {/* Scroll Buttons */}
-            <div className="flex justify-between">
+            <div className="flex gap-2 justify-center">
               <button
                 onClick={slideLeft}
                 className="p-2 rounded border bg-white text-black cursor-pointer"

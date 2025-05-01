@@ -1,10 +1,10 @@
 import express from 'express'
 import multer from 'multer'
-import { rabbitStorage } from '../utils/cloudinaryConfig.js'
+import { drippyStorage } from '../utils/cloudinaryConfig.js'
 import { uploadImage } from '../controllers/upload.controller.js'
 
 const uploadRoutes = express.Router()
-const upload = multer({storage : rabbitStorage})
+const upload = multer({storage : drippyStorage})
 
 uploadRoutes.post('/', upload.single('image'), uploadImage)
 

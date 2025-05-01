@@ -5,8 +5,8 @@ import { Phone } from 'lucide-react'
 
 const Topbar = () => {
   return (
-    <div className='bg-rabbit-green text-white'>
-        <div className='container mx-auto flex justify-between items-center px-4 py-3'>
+    <div className='bg-drippy-green text-white'>
+        <div className='container mx-auto flex justify-between items-center px-2 sm:px-4 py-3'>
             <div className='hidden md:flex items-center space-x-4' data-aos="fade-right">
                 <a href="#" className='hover:text-gray-300'>
                     <IoLogoInstagram className='h-6 w-6'/>

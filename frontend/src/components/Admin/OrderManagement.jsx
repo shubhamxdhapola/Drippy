@@ -46,17 +46,17 @@ const OrderManagement = () => {
     );
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-3 sm:p-6">
       <h2 className="text-2xl font-bold mb-6">Order Management</h2>
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
         <table className="min-w-full text-left text-gray-500">
           <thead className="bg-gray-100 text-sm uppercase text-gray-700">
             <tr>
-              <th className="py-3 px-4">Order ID</th>
-              <th className="py-3 px-4">Customer</th>
-              <th className="py-3 px-4">Total Price</th>
-              <th className="py-3 px-4">Status</th>
-              <th className="py-3 px-4">Actions</th>
+              <th className="py-3 px-4 whitespace-nowrap">Order ID</th>
+              <th className="py-3 px-4 whitespace-nowrap">Customer</th>
+              <th className="py-3 px-4 whitespace-nowrap">Total Price</th>
+              <th className="py-3 px-4 whitespace-nowrap">Status</th>
+              <th className="py-3 px-4 whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -69,15 +69,15 @@ const OrderManagement = () => {
                   <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
                     #{order._id}
                   </td>
-                  <td className="p-4">{order.user.name}</td>
-                  <td className="p-4">₹{order.totalPrice.toLocaleString()}</td>
-                  <td className="p-4">
+                  <td className="p-4 whitespace-nowrap">{order.user.name}</td>
+                  <td className="p-4 whitespace-nowrap">₹{order.totalPrice.toLocaleString()}</td>
+                  <td className="p-4 whitespace-nowrap">
                     <select
                       value={order.status}
                       onChange={(e) =>
                         handleStatusChange(order._id, e.target.value)
                       }
-                      className="select select-bordered w-full max-w-[150px]"
+                      className="select select-bordered max-w-[150px]"
                     >
                       <option value="Processing">Processing</option>
                       <option value="Shipped">Shipped</option>
@@ -85,7 +85,7 @@ const OrderManagement = () => {
                       <option value="Cancelled">Cancelled</option>
                     </select>
                   </td>
-                  <td className="p-4">
+                  <td className="p-4 whitespace-nowrap">
                     <button
                       onClick={() => handleStatusChange(order._id, "Delivered")}
                       className={`${

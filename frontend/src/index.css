@@ -12,6 +12,9 @@ body {
     overflow-x: hidden;
 }
 
+.logo {
+    font-family: 'Lilita One', sans-serif;
+}
 .custom-select {
     appearance: none;
     -webkit-appearance: none;

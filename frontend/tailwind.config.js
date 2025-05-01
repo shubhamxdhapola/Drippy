@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors : {
-        'rabbit-green' : "#3D9970"
+        'drippy-green' : "#3D9970"
       }
     },
   },

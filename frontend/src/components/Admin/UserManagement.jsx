@@ -97,10 +97,10 @@ const UserManagement = () => {
     );
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-3 sm:p-6">
       <h2 className="text-2xl font-bold mb-4">User Management</h2>
       {/* Add new user form */}
-      <div className="p-6 rounded-lg mb-6">
+      <div className="p-2 sm:p-6 rounded-lg mb-6">
         <h3 className="text-lg font-bold mb-4">Add New User</h3>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -177,10 +177,10 @@ const UserManagement = () => {
         <table className="min-w-full text-left text-gray-500">
           <thead className="bg-gray-100 text-sm uppercase text-gray-700">
             <tr>
-              <th className="py-3 px-4">Name</th>
-              <th className="py-3 px-4">Email</th>
-              <th className="py-3 px-4">Role</th>
-              <th className="py-3 px-4">Actions</th>
+              <th className="py-3 px-4 whitespace-nowrap">Name</th>
+              <th className="py-3 px-4 whitespace-nowrap">Email</th>
+              <th className="py-3 px-4 whitespace-nowrap">Role</th>
+              <th className="py-3 px-4 whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -189,18 +189,18 @@ const UserManagement = () => {
                 <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
                   {user.name}
                 </td>
-                <td className="p-4">{user.email}</td>
-                <td className="p-4">
+                <td className="p-4 whitespace-nowrap">{user.email}</td>
+                <td className="p-4 whitespace-nowrap">
                   <select
                     value={user.role}
                     onChange={(e) => handleRoleChange(user._id, e.target.value)}
-                    className="select select-bordered w-full max-w-[130px]"
+                    className="select select-bordered max-w-[130px] whitespace-nowrap"
                   >
                     <option value="customer">Customer</option>
                     <option value="admin">Admin</option>
                   </select>
                 </td>
-                <td className="p-4">
+                <td className="p-4 whitespace-nowrap">
                   <button
                     onClick={() => handleDeleteUser(user._id)}
                     className="bg-red-500 text-white px-4 py-2 w-[80px] rounded hover:bg-red-600"

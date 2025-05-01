@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.get('/', (_, res) => {
-    res.send("Hey!, Welcome to Rabbit!")
+    res.send("Hey!, Welcome to Drippy!")
 })
 
 // User routes

@@ -97,7 +97,7 @@ const EditProductPage = () => {
     );
 
   return (
-    <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">
+    <div className="max-w-5xl mx-auto p-3 sm:p-6 shadow-md rounded-md">
       <h2 className="text-2xl font-bold mb-6">Edit Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-6">

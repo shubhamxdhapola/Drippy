@@ -41,16 +41,16 @@ const ProductManagement = () => {
     );
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-3 sm:p-6">
       <h2 className="text-2xl font-bold mb-6">Product Management</h2>
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
         <table className="min-w-full text-left text-gray-500">
           <thead className="bg-gray-100 text-sm uppercase text-gray-700">
             <tr>
-              <th className="py-3 px-4">Name</th>
-              <th className="py-3 px-4">Price</th>
-              <th className="py-3 px-4">SKU</th>
-              <th className="py-3 px-4">Actions</th>
+              <th className="py-3 px-4 whitespace-nowrap">Name</th>
+              <th className="py-3 px-4 whitespace-nowrap">Price</th>
+              <th className="py-3 px-4 whitespace-nowrap">SKU</th>
+              <th className="py-3 px-4 whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -63,9 +63,9 @@ const ProductManagement = () => {
                   <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
                     {product.name}
                   </td>
-                  <td className="p-4">₹{product.price.toLocaleString()}</td>
-                  <td className="p-4">{product.sku}</td>
-                  <td className="p-4 flex items-center gap-2">
+                  <td className="p-4 whitespace-nowrap">₹{product.price.toLocaleString()}</td>
+                  <td className="p-4 whitespace-nowrap">{product.sku}</td>
+                  <td className="p-4 flex items-center gap-2 whitespace-nowrap">
                     <Link
                       to={`/admin/products/${product._id}/edit`}
                       className="text-gray-800 hover:text-gray-900 duration-300 tooltip"

@@ -15,7 +15,6 @@ const OrderDetailsPage = () => {
     dispatch(fetchOrderDetails(id));
   }, [dispatch, id]);
 
-  console.log(orderDetails);
   if (loading)
     return (
       <div className="flex justify-center items-center h-[80vh]">
@@ -40,7 +39,7 @@ const OrderDetailsPage = () => {
           {/* Order Info */}
           <div className="flex flex-col sm:flex-row justify-between mb-8">
             <div>
-              <h3 className="text-lg md:text-xl font-semibold">
+              <h3 className="text-md sm:text-lg md:text-xl font-semibold">
                 Order ID: #{orderDetails._id}
               </h3>
               <p className="text-gray-600">
@@ -100,21 +99,24 @@ const OrderDetailsPage = () => {
             <table className="min-w-full text-gray-600 mb-4">
               <thead className="bg-gray-100 text-left">
                 <tr>
-                  <th className="py-2 px-4">Name</th>
-                  <th className="py-2 px-4">Unit Price</th>
-                  <th className="py-2 px-4">Quantity</th>
-                  <th className="py-2 px-4">Total</th>
+                  <th className="py-2 px-4 whitespace-nowrap">Image</th>
+                  <th className="py-2 px-4 whitespace-nowrap">Name</th>
+                  <th className="py-2 px-4 whitespace-nowrap">Unit Price</th>
+                  <th className="py-2 px-4 whitespace-nowrap">Quantity</th>
+                  <th className="py-2 px-4 whitespace-nowrap">Total</th>
                 </tr>
               </thead>
               <tbody>
                 {orderDetails.orderItems.map((item, index) => (
                   <tr key={index} className="border-b">
-                    <td className="py-2 px-4 flex items-center">
+                    <td className="py-2 px-4 whitespace-nowrap">
                       <img
                         src={item.image}
                         alt={item.name}
                         className="w-12 h-12 object-cover rounded-lg mr-4"
                       />
+                    </td>
+                    <td className="py-2 px-4 whitespace-nowrap">
                       <Link
                         to={`/product/${item.productId}`}
                         className="text-blue-500 hover:underline"
@@ -125,8 +127,8 @@ const OrderDetailsPage = () => {
                     <td className="py-2 px-4">
                       ₹{item.price.toLocaleString()}
                     </td>
-                    <td className="py-2 px-4">{item.quantity}</td>
-                    <td className="py-2 px-4">₹{item.price * item.quantity}</td>
+                    <td className="py-2 px-4 whitespace-nowrap">{item.quantity}</td>
+                    <td className="py-2 px-4 whitespace-nowrap">₹{item.price * item.quantity}</td>
                   </tr>
                 ))}
               </tbody>

@@ -34,8 +34,8 @@ const AdminHomePage = () => {
       </div>
     );
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
+    <div className="max-w-7xl mx-auto p-3 sm:p-6">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6">Admin Dashboard</h1>
       {productsLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skeletonArray.map((_, index) => (
@@ -77,10 +77,10 @@ const AdminHomePage = () => {
           <table className="min-w-full text-left text-gray-500">
             <thead className="bg-gray-100 text-xs uppercase text-gray-700">
               <tr>
-                <th className="py-3 px-4">Order ID</th>
-                <th className="py-3 px-4">User</th>
-                <th className="py-3 px-4">Total Price</th>
-                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4 whitespace-nowrap">Order ID</th>
+                <th className="py-3 px-4 whitespace-nowrap">User</th>
+                <th className="py-3 px-4 whitespace-nowrap">Total Price</th>
+                <th className="py-3 px-4 whitespace-nowrap">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -90,12 +90,12 @@ const AdminHomePage = () => {
                     key={order._id}
                     className="border-b hover:bg-gray-50 cursor-pointer"
                   >
-                    <td className="p-4">{order._id}</td>
-                    <td className="p-4">{order.user.name}</td>
-                    <td className="p-4">
+                    <td className="p-4 whitespace-nowrap">{order._id}</td>
+                    <td className="p-4 whitespace-nowrap">{order.user.name}</td>
+                    <td className="p-4 whitespace-nowrap">
                       ₹{order.totalPrice.toLocaleString()}
                     </td>
-                    <td className="p-4">{order.status}</td>
+                    <td className="p-4 whitespace-nowrap">{order.status}</td>
                   </tr>
                 ))
               ) : ordersLoading ? (

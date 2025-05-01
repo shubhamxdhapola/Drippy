@@ -26,8 +26,8 @@ const AdminSidebar = ({toggleSidebar}) => {
   return (
     <div className="p-6 sticky top-0">
       <div className="mb-6">
-        <Link to="/admin" className="text-2xl font-medium" onClick={toggleSidebar}>
-          Rabbit
+        <Link to="/admin" className="logo text-2xl font-medium" onClick={toggleSidebar}>
+          Drippy
         </Link>
       </div>
       <h2

@@ -6,6 +6,7 @@ import { createCheckout } from "../../redux/slices/checkoutSlice";
 import { apiClient } from "../../utils/apiClient";
 import { Loader } from "lucide-react";
 import ErrorPage from "../Common/ErrorPage";
+import { toast } from "sonner";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -32,6 +33,15 @@ const Checkout = () => {
 
   const handleCreateCheckout = async (e) => {
     e.preventDefault();
+
+    if(!shippingAddress.firstName.trim()) return toast.error("First name is required!")
+    if(!shippingAddress.lastName.trim()) return toast.error("Last name is required!")
+    if(!shippingAddress.address.trim()) return toast.error("Address is required!")
+    if(!shippingAddress.city.trim()) return toast.error("City is required!")
+    if(!shippingAddress.postalCode.trim()) return toast.error("Postal code is required!")
+    if(!shippingAddress.country.trim()) return toast.error("Country is required!")
+    if(!shippingAddress.phone.trim()) return toast.error("Phone number is required!")
+
     if (cart && cart.products.length > 0) {
       const res = await dispatch(
         createCheckout({
@@ -63,6 +73,7 @@ const Checkout = () => {
     try {
       await apiClient.post(`api/checkout/${checkoutId}/finalize`);
       navigate("/order-confirmation");
+      toast.success("Item ordered successfully!")
     } catch (error) {
       console.log(error);
     }
@@ -87,10 +98,10 @@ const Checkout = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-6 tracking-tighter">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-4 sm:px-6 tracking-tighter">
       {/* Left section */}
-      <div className="bg-white rounded-lg p-6">
-        <h2 className="text-2xl uppercase mb-6">Checkout</h2>
+      <div className="bg-white rounded-lg px-2 sm:p-6">
+        <h2 className="text-xl sm:text-2xl uppercase mb-6">Checkout</h2>
         <form onSubmit={handleCreateCheckout}>
           <h3 className="text-lg mb-4">Contact Details</h3>
           <div className="mb-4">
@@ -234,7 +245,7 @@ const Checkout = () => {
         </form>
       </div>
       {/* Right section */}
-      <div className="bg-gray-50 p-6 rounded-lg">
+      <div className="bg-gray-50 px-4 sm:p-6 rounded-lg">
         <h3 className="text-lg mb-4">Order Summary</h3>
         <div className="border-t py-4 mb-4">
           {cart.products.map((product, index) => (

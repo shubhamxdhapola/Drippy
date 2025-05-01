@@ -1,4 +1,4 @@
-import { Link, useLocation, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   HiOutlineUser,
   HiOutlineShoppingBag,
@@ -39,11 +39,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="container mx-auto flex items-center justify-between py-4 px-6">
+      <nav className="container mx-auto flex items-center justify-between px-3 py-4 sm:px-6">
         {/* Logo Left */}
         <div data-aos="fade-right">
-          <Link to="/" className="text-2xl font-medium">
-            Rabbit
+          <Link to="/" className="text-xl sm:text-2xl font-medium logo">
+            Drippy
           </Link>
         </div>
         {/* Center - Navigations Links */}
@@ -51,53 +51,61 @@ const Navbar = () => {
           className="hidden md:flex space-x-6 items-center"
           data-aos="fade-up"
         >
-          <NavLink
+          <Link
             to="/collections/all?gender=Men"
-            className={() =>
-              location.search === "?gender=Men"
-                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
-                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
-            }
+            className={`
+              ${
+                location.search === "?gender=Men"
+                  ? "text-drippy-green hover:text-green-700"
+                  : "text-gray-700 hover:text-black"
+              } text-sm font-medium uppercase       
+            `}
           >
             Men
-          </NavLink>
+          </Link>
 
-          <NavLink
+          <Link
             to="/collections/all?gender=Women"
-            className={() =>
-              location.search === "?gender=Women"
-                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
-                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
-            }
+            className={`
+              ${
+                location.search === "?gender=Women"
+                  ? "text-drippy-green hover:text-green-700"
+                  : "text-gray-700 hover:text-black"
+              } text-sm font-medium uppercase      
+            `}
           >
             Women
-          </NavLink>
+          </Link>
 
-          <NavLink
+          <Link
             to="/collections/all?category=Top Wear"
-            className={() =>
-              location.search === "?category=Top%20Wear"
-                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
-                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
-            }
+            className={`
+              ${
+                location.search === "?category=Top%20Wear"
+                  ? "text-drippy-green hover:text-green-700"
+                  : "text-gray-700 hover:text-black"
+              } text-sm font-medium uppercase
+            `}
           >
             Top wear
-          </NavLink>
+          </Link>
 
-          <NavLink
+          <Link
             to="/collections/all?category=Bottom Wear"
-            className={() =>
-              location.search === "?category=Bottom%20Wear"
-                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
-                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
-            }
+            className={`
+              ${
+                location.search === "?category=Bottom%20Wear"
+                  ? "text-drippy-green hover:text-green-700"
+                  : "text-gray-700 hover:text-black"
+              } text-sm font-medium uppercase       
+            `}
           >
             Bottom wear
-          </NavLink>
+          </Link>
           {user && user.role === "admin" && (
             <Link
               to="/admin"
-              className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-rabbit-green hover:border-rabbit-green hover:text-white duration-300 transition-all"
+              className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-drippy-green hover:border-drippy-green hover:text-white duration-300 transition-all"
             >
               Admin Panel
             </Link>
@@ -119,7 +127,7 @@ const Navbar = () => {
           >
             <HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
             {cartItemCount > 0 && (
-              <span className="absolute -top-1 -right-3 bg-rabbit-green text-white text-xs rounded-full px-2 py-0.5">
+              <span className="absolute -top-1 -right-3 bg-drippy-green text-white text-xs rounded-full px-2 py-0.5">
                 {cartItemCount}
               </span>
             )}
@@ -146,7 +154,11 @@ const Navbar = () => {
         ${navDrawerOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex justify-end p-4">
-          <button onClick={toggleNavDrawer}>
+          <button
+            onClick={toggleNavDrawer}
+            className="tooltip tooltip-left"
+            data-tip="Close"
+          >
             <IoMdClose className="h-6 w-6 text-gray-600" />
           </button>
         </div>
@@ -156,28 +168,48 @@ const Navbar = () => {
             <Link
               to="/collections/all?gender=Men"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className={`
+                ${
+                  location.search === "?gender=Men"
+                    ? "text-drippy-green hover:text-green-700"
+                    : "text-gray-700 hover:text-black"
+                } block`}
             >
               Men
             </Link>
             <Link
               to="/collections/all?gender=Women"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className={`
+                ${
+                  location.search === "?gender=Women"
+                    ? "text-drippy-green hover:text-green-700"
+                    : "text-gray-700 hover:text-black"
+                } block`}
             >
               Women
             </Link>
             <Link
               to="/collections/all?category=Top Wear"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className={`
+                ${
+                  location.search === "?category=Top%20Wear"
+                    ? "text-drippy-green hover:text-green-700"
+                    : "text-gray-700 hover:text-black"
+                } block`}
             >
               Top Wear
             </Link>
             <Link
               to="/collections/all?category=Bottom Wear"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className={`
+                ${
+                  location.search === "?category=Botom%20Wear"
+                    ? "text-drippy-green hover:text-green-700"
+                    : "text-gray-700 hover:text-black"
+                } block`}
             >
               Bottom Wear
             </Link>
@@ -185,7 +217,7 @@ const Navbar = () => {
               <Link
                 to="/admin"
                 onClick={toggleNavDrawer}
-                className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-rabbit-green hover:border-rabbit-green hover:text-white duration-300 transition-all"
+                className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-drippy-green hover:border-drippy-green hover:text-white duration-300 transition-all"
               >
                 Admin Panel
               </Link>
