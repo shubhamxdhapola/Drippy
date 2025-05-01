@@ -10,7 +10,7 @@ const ProductGrid = ({ products, loading, error }) => {
       </div>
     );
 
-  return (
+  return products.length > 0 ? (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
       {products.map((product, index) => (
         <Link
@@ -34,6 +34,10 @@ const ProductGrid = ({ products, loading, error }) => {
           </div>
         </Link>
       ))}
+    </div>
+  ) : (
+    <div className="text-center h-[50vh] flex justify-center items-center">
+      <span>No products to show for the requested query!</span>
     </div>
   );
 };

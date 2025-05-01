@@ -22,7 +22,7 @@ const UserManagement = () => {
   const [formData, setformData] = useState(initialFormData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userExist, setUserExist } = useState(false);
+  const [ userExist, setUserExist ] = useState(false);
   const [deletingUserId, setDeletingUserId] = useState(null);
 
   const { user } = useSelector((state) => state.auth);
@@ -51,6 +51,9 @@ const UserManagement = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!formData.name.trim()) return toast.error("Name is required!")
+    if(!formData.email.trim()) return toast.error("Email is required!")
+    if(!formData.password.trim()) return toast.error("Password is required!")
     dispatch(addUser(formData))
       .unwrap()
       .then(() => {
@@ -86,7 +89,7 @@ const UserManagement = () => {
       </div>
     );
 
-  if (error)
+  if (!userExist && error)
     return (
       <div className="flex justify-center items-center h-screen">
         <ErrorPage />;
@@ -162,9 +165,9 @@ const UserManagement = () => {
           </div>
           <button
             type="submit"
-            className="bg-green-500 text-white px-4 py-2 mt-4 rounded hover:bg-green-600 duration-300"
+            className="bg-green-500 text-white px-4 py-2 mt-4 w-[100px] rounded hover:bg-green-600 duration-300"
           >
-            {addUserLoading ? <Loader2 className="animate-spin" /> : "Add User"}
+            {addUserLoading ? <Loader2 className="animate-spin mx-auto" /> : "Add User"}
           </button>
         </form>
       </div>

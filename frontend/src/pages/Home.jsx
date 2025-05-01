@@ -44,7 +44,7 @@ const Home = () => {
       <h2 className="text-center text-3xl font-bold mb-4" data-aos="zoom-in">
         Best Seller
       </h2>
-      <p className="text-center mb-2 text-gray-600" data-aos="zoom-in">
+      <p className="text-center mb-2 text-gray-600 px-4" data-aos="zoom-in">
         Style icons approved, wardrobe heroes unlocked. These trending pieces
         are what everyone's wearing—and trust us, you’ll want in.
       </p>
@@ -61,7 +61,7 @@ const Home = () => {
         <h2 className="text-3xl text-center font-bold mb-4" data-aos="zoom-in">
           Top Wears for Women
         </h2>
-        <p className="text-center mb-8 text-gray-600" data-aos="zoom-in">
+        <p className="text-center mb-8 text-gray-600 px-4" data-aos="zoom-in">
           From effortless elegance to bold statements, our top picks are made to
           turn heads and win hearts—your wardrobe’s new obsessions await.
         </p>

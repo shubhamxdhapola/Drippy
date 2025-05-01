@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, NavLink } from "react-router-dom";
 import {
   HiOutlineUser,
   HiOutlineShoppingBag,
@@ -15,19 +15,20 @@ const Navbar = () => {
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
   const { cart } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
-  const navRef = useRef(null)
+  const navRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     function handleClickOutside(e) {
-      if(navRef.current && !navRef.current.contains(e.target)) {        
-        setNavDrawerOpen(false)
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setNavDrawerOpen(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const cartItemCount =
     cart?.products?.reduce((total, product) => total + product.quantity, 0) ||
@@ -50,30 +51,49 @@ const Navbar = () => {
           className="hidden md:flex space-x-6 items-center"
           data-aos="fade-up"
         >
-          <Link
+          <NavLink
             to="/collections/all?gender=Men"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className={() =>
+              location.search === "?gender=Men"
+                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
+                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
+            }
           >
             Men
-          </Link>
-          <Link
+          </NavLink>
+
+          <NavLink
             to="/collections/all?gender=Women"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className={() =>
+              location.search === "?gender=Women"
+                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
+                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
+            }
           >
             Women
-          </Link>
-          <Link
+          </NavLink>
+
+          <NavLink
             to="/collections/all?category=Top Wear"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className={() =>
+              location.search === "?category=Top%20Wear"
+                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
+                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
+            }
           >
             Top wear
-          </Link>
-          <Link
+          </NavLink>
+
+          <NavLink
             to="/collections/all?category=Bottom Wear"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className={() =>
+              location.search === "?category=Bottom%20Wear"
+                ? "text-rabbit-green hover:text-black text-sm font-medium uppercase"
+                : "text-gray-700 hover:text-black text-sm font-medium uppercase"
+            }
           >
             Bottom wear
-          </Link>
+          </NavLink>
           {user && user.role === "admin" && (
             <Link
               to="/admin"
@@ -85,11 +105,16 @@ const Navbar = () => {
         </div>
         {/* Right - Icons */}
         <div className="flex items-center space-x-4" data-aos="fade-left">
-          <Link to="/profile" className="hover:text-black tooltip" data-tip="Profile">
+          <Link
+            to="/profile"
+            className="hover:text-black tooltip"
+            data-tip="Profile"
+          >
             <HiOutlineUser className="h-6 w-6 text-gray-700" />
           </Link>
           <button
-            className="relative hover:text-black tooltip" data-tip="Cart"
+            className="relative hover:text-black tooltip"
+            data-tip="Cart"
             onClick={toggleCartDrawer}
           >
             <HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
@@ -108,7 +133,11 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <CartDrawer cartDrawerOpen={cartDrawerOpen} toggleCartDrawer={toggleCartDrawer} setCartDrawerOpen={setCartDrawerOpen} />
+      <CartDrawer
+        cartDrawerOpen={cartDrawerOpen}
+        toggleCartDrawer={toggleCartDrawer}
+        setCartDrawerOpen={setCartDrawerOpen}
+      />
 
       {/* Mobile Navigation */}
       <div
