@@ -4,7 +4,7 @@ const ProductDetailsSkeleton = () => {
   return (
     <div className="p-0 md:p-6">
       <div className="max-w-6xl mx-auto p-4 sm:p-8">
-        <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row">
+        <div className="flex flex-col gap-5 md:space-y-0 md:flex-row">
           {/* Desktop version side-images */}
           <div className="hidden md:block space-y-4 mr-6">
             <div className="skeleton h-20 w-20 rounded-lg"></div>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const FeaturedCollection = () => {
   return (
-    <section className="py-16 px-4 lg:px-0">
+    <section className="py-16 px-4">
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center bg-green-50 rounded-3xl">
         {/* Left Content */}
         <div className="lg:w-1/2 p-6 sm:p-8 text-center lg:text-left">
@@ -29,7 +29,7 @@ const FeaturedCollection = () => {
           </div>
         </div>
         {/* Right Content */}
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 h-full">
           <div data-aos="fade-left">
             <img
               src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

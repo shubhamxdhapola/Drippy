@@ -24,7 +24,7 @@ const NewArrivals = () => {
         settings: { slidesToShow: 2, slidesToScroll: 2 },
       },
       {
-        breakpoint: 480,
+        breakpoint: 550,
         settings: { slidesToShow: 1, slidesToScroll: 1 },
       },
     ],
@@ -57,7 +57,7 @@ const NewArrivals = () => {
   }, []);
 
   return (
-    <section className="py-16 px-2 sm:px-4 lg:px-0">
+    <section className="py-16 px-2 sm:px-4">
       <div className="container mx-auto text-center mb-10 relative">
         <h2 className="text-2xl sm:text-3xl font-bold mb-4" data-aos="zoom-in">
           Explore New Arrivals
@@ -83,7 +83,7 @@ const NewArrivals = () => {
                     <img
                       src={product.images[0]?.url}
                       alt={product.images[0]?.altText || product.name}
-                      className="w-full h-[420px] md:h-[375px] object-cover rounded-lg"
+                      className="w-full h-[450px] md:h-[375px] object-cover rounded-lg"
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 backdrop-blur-md text-white p-4 rounded-b-lg text-left">
                       <Link to={`/product/${product._id}`}>

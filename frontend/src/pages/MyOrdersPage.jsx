@@ -12,6 +12,10 @@ const MyOrdersPage = () => {
   const { orders, loading, error } = useSelector((state) => state.orders);
 
   useEffect(() => {
+      window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     dispatch(fetchUserOrders());
   }, [dispatch]);
 

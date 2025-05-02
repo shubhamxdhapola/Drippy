@@ -130,8 +130,6 @@ export const getProducts = async(req, res) => {
             .limit(Number(limit) || 0)
         
         res.status(200).json(products)
-
-
     } catch(err) {
         console.log("Error in getProducts controller : ", err)
         res.status(500).json({message : "Internal server error!"})

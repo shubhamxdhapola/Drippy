@@ -44,7 +44,11 @@ app.use('/api/admin/users', adminRoutes)
 app.use('/api/admin/products', productAdminRoutes)
 app.use('/api/admin/orders', adminOrderRoutes)
 
-app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT}`)
-    connectDB()
+app.listen(PORT, async () => {
+    try {
+        await connectDB()
+        console.log(`Server is running on PORT ${PORT}`)
+    } catch(err) {
+        console.log("Error : ", err)
+    }
 })

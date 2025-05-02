@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import heroImg from '../../assets/drippy-hero.webp'
+import heroImg from '../../assets/Hero_Img.png'
 
 const Hero = () => {
   return (

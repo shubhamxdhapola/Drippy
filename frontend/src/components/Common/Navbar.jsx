@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="container mx-auto flex items-center justify-between px-3 py-4 sm:px-6">
+      <nav className="container mx-auto flex items-center justify-between px-3 py-4 sm:px-6 sticky top-0">
         {/* Logo Left */}
         <div data-aos="fade-right">
           <Link to="/" className="text-xl sm:text-2xl font-medium logo">
