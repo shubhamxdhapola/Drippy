@@ -31,6 +31,10 @@ const App = () => {
   const { user, guestId } = useSelector(state => state.auth)
 
   useEffect(() => {
+    document.title = "Drippy - Home"
+  })
+
+  useEffect(() => {
     if(user || guestId) {
       dispatch(fetchCart({userId : user?._id, guestId}))
     }
