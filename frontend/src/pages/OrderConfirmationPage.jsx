@@ -10,8 +10,12 @@ const OrderConfirmationPage = () => {
   const { checkout } = useSelector((state) => state.checkout);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [checkout])
+    window.scrollTo(0, 0);
+  }, [checkout]);
+
+  useEffect(() => {
+    document.title = "Drippy - Order Confirmation";
+  });
 
   useEffect(() => {
     if (checkout && checkout._id) {
@@ -52,8 +56,7 @@ const OrderConfirmationPage = () => {
             {/* Estimated Delivery */}
             <div>
               <p className="text-emerald-700 mt-4 md:mt-0">
-                Delivered By :{" "}
-                {calulateEstimateDelivery(checkout.createdAt)}
+                Delivered By : {calulateEstimateDelivery(checkout.createdAt)}
               </p>
             </div>
           </div>

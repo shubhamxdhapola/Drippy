@@ -66,6 +66,10 @@ const UserManagement = () => {
       });
   };
 
+  useEffect(() => {
+    document.title = "Drippy - Admin | Users"
+  })
+
   const handleRoleChange = (userId, newRole) => {
     dispatch(updateUser({ id: userId, role: newRole }))
       .unwrap()

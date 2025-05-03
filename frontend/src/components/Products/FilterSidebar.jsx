@@ -214,7 +214,7 @@ const FilterSidebar = () => {
         </div>
 
         {/* Price Range Filter */}
-        <div className='mb-8'>
+        {/* <div className='mb-8'>
             <label className='block text-gray-600 font-medium mb-2'>Price Range</label>
             <input 
                 type="range" 
@@ -229,7 +229,7 @@ const FilterSidebar = () => {
                 <span>₹0</span>
                 <span>₹{priceRange[1]}</span>
             </div>
-        </div>
+        </div> */}
         
     </div>
   )

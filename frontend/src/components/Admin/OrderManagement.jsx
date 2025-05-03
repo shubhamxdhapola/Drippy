@@ -24,6 +24,10 @@ const OrderManagement = () => {
     }
   }, [dispatch, user, navigate]);
 
+  useEffect(() => {
+    document.title = "Drippy - Admin | Orders"
+  })
+
   const handleStatusChange = (orderId, status) => {
     dispatch(updateOrderStatus({ id: orderId, status }))
       .unwrap()

@@ -16,6 +16,10 @@ const ProductManagement = () => {
   );
 
   useEffect(() => {
+    document.title = "Drippy - Admin | Products"
+  })
+
+  useEffect(() => {
     dispatch(fetchAdminProducts());
   }, [dispatch]);
 

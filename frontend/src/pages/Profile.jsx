@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../redux/slices/authSlice";
 import { clearCart } from "../redux/slices/cartSlice";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { toast } from "sonner";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = "Drippy - Profile";
+  });
 
   useEffect(() => {
     if (!user) {
@@ -21,9 +25,9 @@ const Profile = () => {
   const handleLogout = () => {
     dispatch(logoutUser());
     dispatch(clearCart());
-    Cookies.remove('jwt')
+    Cookies.remove("jwt");
     navigate("/login");
-    toast.success("Logged out successfully!")
+    toast.success("Logged out successfully!");
   };
   return (
     <div className="min-h-screen flex flex-col">

@@ -19,6 +19,10 @@ const Login = () => {
   const isCheckoutRedirect = redirect.includes("checkout");
 
   useEffect(() => {
+    document.title = "Drippy - Login"
+  })
+
+  useEffect(() => {
     if (user) {
       if (cart?.products?.length > 0 && guestId) {
         dispatch(mergeCart({ guestId, user })).then(() => {

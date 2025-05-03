@@ -12,12 +12,16 @@ const OrderDetailsPage = () => {
   const { orderDetails, loading, error } = useSelector((state) => state.orders);
 
   useEffect(() => {
-      window.scrollTo(0, 0)
-  }, [id])
+    window.scrollTo(0, 0);
+  }, [id]);
 
   useEffect(() => {
     dispatch(fetchOrderDetails(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    document.title = "Drippy - Orders Details";
+  });
 
   if (loading)
     return (
@@ -67,11 +71,14 @@ const OrderDetailsPage = () => {
               </span>
               <span
                 className={`${
-                  (orderDetails.status === "Delivered" && "bg-green-100 text-green-700" ||
-                  orderDetails.status === "Processing" &&"bg-yellow-100 text-yellow-700" ||
-                  orderDetails.status === "Cancelled" && "bg-red-100 text-red-700" ||
-                  orderDetails.status === "Shipped" && "bg-blue-100 text-blue-700"
-                  )
+                  (orderDetails.status === "Delivered" &&
+                    "bg-green-100 text-green-700") ||
+                  (orderDetails.status === "Processing" &&
+                    "bg-yellow-100 text-yellow-700") ||
+                  (orderDetails.status === "Cancelled" &&
+                    "bg-red-100 text-red-700") ||
+                  (orderDetails.status === "Shipped" &&
+                    "bg-blue-100 text-blue-700")
                 } px-3 py-1 rounded-full text-sm font-medium mb-2`}
               >
                 {/* {orderDetails.isDelivered ? "Delivered" : "Pending"} */}
@@ -131,8 +138,12 @@ const OrderDetailsPage = () => {
                     <td className="py-2 px-4">
                       ₹{item.price.toLocaleString()}
                     </td>
-                    <td className="py-2 px-4 whitespace-nowrap">{item.quantity}</td>
-                    <td className="py-2 px-4 whitespace-nowrap">₹{item.price * item.quantity}</td>
+                    <td className="py-2 px-4 whitespace-nowrap">
+                      {item.quantity}
+                    </td>
+                    <td className="py-2 px-4 whitespace-nowrap">
+                      ₹{item.price * item.quantity}
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -91,6 +91,7 @@ const cartSlice = createSlice({
         cart : loadCartFromStorage(),
         loading : false,
         error : null,
+        updateCartLoading : false,
     },
     reducers : {
         clearCart : (state) => {

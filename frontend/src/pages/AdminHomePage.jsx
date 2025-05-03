@@ -23,6 +23,10 @@ const AdminHomePage = () => {
   } = useSelector((state) => state.adminOrders);
 
   useEffect(() => {
+    document.title = "Drippy - Admin"
+  })
+
+  useEffect(() => {
     dispatch(fetchAdminProducts());
     dispatch(fetchAllOrders());
   }, [dispatch]);

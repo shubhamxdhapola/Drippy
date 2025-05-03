@@ -1,14 +1,15 @@
 const ProductsSkeleton = () => {
-
-  const skeletonArray = Array(8).fill(null)
+  const skeletonArray = Array(8).fill(null);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-2">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 px-2">
       {skeletonArray.map((_, index) => (
-        <div key={index} className="flex w-full flex-col gap-3">
-          <div className="skeleton w-full rounded h-[430px] sm:h-[360px] md:h-[350px]"></div>
-          <div className="skeleton h-4 w-40 rounded"></div>
-          <div className="skeleton h-4 w-24 rounded"></div>
-        </div>        
+        <div key={index} className="bg-white p-2 sm:p-4 rounded-lg flex flex-col">
+          <div className="aspect-[4/5] overflow-hidden mb-4 ">
+            <div className="skeleton w-full h-full rounded"> </div>
+          </div>
+          <div className="skeleton rounded mt-auto mb-2 h-4 w-[80%] "></div>
+          <div className="skeleton rounded h-4 w-[40%]"></div>
+        </div>
       ))}
     </div>
   );

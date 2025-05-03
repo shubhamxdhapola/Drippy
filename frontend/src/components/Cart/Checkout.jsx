@@ -14,6 +14,10 @@ const Checkout = () => {
   const { cart, loading, error } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    document.title = "Drippy - Checkout";
+  });
+
   const [checkoutId, setCheckoutId] = useState(null);
   const [shippingAddress, setShippingAddress] = useState({
     firstName: "",
@@ -34,13 +38,19 @@ const Checkout = () => {
   const handleCreateCheckout = async (e) => {
     e.preventDefault();
 
-    if(!shippingAddress.firstName.trim()) return toast.error("First name is required!")
-    if(!shippingAddress.lastName.trim()) return toast.error("Last name is required!")
-    if(!shippingAddress.address.trim()) return toast.error("Address is required!")
-    if(!shippingAddress.city.trim()) return toast.error("City is required!")
-    if(!shippingAddress.postalCode.trim()) return toast.error("Postal code is required!")
-    if(!shippingAddress.country.trim()) return toast.error("Country is required!")
-    if(!shippingAddress.phone.trim()) return toast.error("Phone number is required!")
+    if (!shippingAddress.firstName.trim())
+      return toast.error("First name is required!");
+    if (!shippingAddress.lastName.trim())
+      return toast.error("Last name is required!");
+    if (!shippingAddress.address.trim())
+      return toast.error("Address is required!");
+    if (!shippingAddress.city.trim()) return toast.error("City is required!");
+    if (!shippingAddress.postalCode.trim())
+      return toast.error("Postal code is required!");
+    if (!shippingAddress.country.trim())
+      return toast.error("Country is required!");
+    if (!shippingAddress.phone.trim())
+      return toast.error("Phone number is required!");
 
     if (cart && cart.products.length > 0) {
       const res = await dispatch(
@@ -73,7 +83,7 @@ const Checkout = () => {
     try {
       await apiClient.post(`api/checkout/${checkoutId}/finalize`);
       navigate("/order-confirmation");
-      toast.success("Item ordered successfully!")
+      toast.success("Item ordered successfully!");
     } catch (error) {
       console.log(error);
     }
@@ -245,7 +255,7 @@ const Checkout = () => {
         </form>
       </div>
       {/* Right section */}
-      <div className="bg-gray-50 px-4 sm:p-6 rounded-lg">
+      <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
         <h3 className="text-lg mb-4">Order Summary</h3>
         <div className="border-t py-4 mb-4">
           {cart.products.map((product, index) => (
@@ -271,7 +281,7 @@ const Checkout = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-between h-[96px] items-end">
-                <p className="text-xl">
+                <p className="text-lg">
                   ₹{product.price.toLocaleString() * product.quantity}
                 </p>
                 <p className="text-gray-500 text-md">

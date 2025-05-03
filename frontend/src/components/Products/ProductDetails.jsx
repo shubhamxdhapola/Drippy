@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {LoaderCircle} from 'lucide-react'
+import { LoaderCircle } from "lucide-react";
 import {
   fetchProductDetails,
   fetchSimilarProducts,
@@ -28,8 +28,12 @@ const ProductDetails = ({ productId }) => {
   const productFetchId = productId || id;
 
   useEffect(() => {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [selectedProduct?._id]);
+
+  useEffect(() => {
+    document.title = "Drippy - Product";
+  });
 
   useEffect(() => {
     if (productFetchId) {
@@ -37,7 +41,6 @@ const ProductDetails = ({ productId }) => {
       dispatch(fetchSimilarProducts({ id: productFetchId }));
     }
   }, [dispatch, productFetchId]);
-
 
   useEffect(() => {
     if (selectedProduct?.images?.length > 0) {
@@ -74,7 +77,7 @@ const ProductDetails = ({ productId }) => {
       });
   };
 
-  if (loading) return <ProductDetailsSkeleton />
+  if (loading) return <ProductDetailsSkeleton />;
   if (error)
     return (
       <div className="flex justify-center items-center">
@@ -88,7 +91,10 @@ const ProductDetails = ({ productId }) => {
         <div className="max-w-6xl mx-auto bg-white p-4 sm:p-8 rounded-lg">
           <div className="flex flex-col md:flex-row">
             {/* Left Thumbnails */}
-            <div className="hidden md:flex flex-col space-y-4 mr-6" data-aos="fade-right">
+            <div
+              className="hidden md:flex flex-col space-y-4 mr-6"
+              data-aos="fade-right"
+            >
               {selectedProduct.images.map((image, index) => (
                 <img
                   key={index}
@@ -119,7 +125,10 @@ const ProductDetails = ({ productId }) => {
             </div>
 
             {/* Mobile Thumbnails */}
-            <div className="md:hidden flex overflow-x-auto p-1 space-x-4 mb-4" style={{scrollbarWidth : 'none'}}>
+            <div
+              className="md:hidden flex overflow-x-auto p-1 space-x-4 mb-4"
+              style={{ scrollbarWidth: "none" }}
+            >
               {selectedProduct.images.map((image, index) => (
                 <img
                   key={index}
@@ -221,7 +230,11 @@ const ProductDetails = ({ productId }) => {
                     : "hover:bg-gray-900"
                 }`}
               >
-                {isButtonDisabled ? <LoaderCircle className="animate-spin text-center" /> : "ADD TO CART"}
+                {isButtonDisabled ? (
+                  <LoaderCircle className="animate-spin text-center" />
+                ) : (
+                  "ADD TO CART"
+                )}
               </button>
 
               {/* <div className="mt-10 text-gray-700">
@@ -242,7 +255,10 @@ const ProductDetails = ({ productId }) => {
             </div>
           </div>
           <div className="mt-20">
-            <h2 className="text-2xl text-center font-medium mb-4" data-aos="zoom-in"> 
+            <h2
+              className="text-2xl text-center font-medium mb-4"
+              data-aos="zoom-in"
+            >
               {" "}
               You May Also Like{" "}
             </h2>

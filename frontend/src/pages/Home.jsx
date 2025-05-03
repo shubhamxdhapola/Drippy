@@ -18,6 +18,10 @@ const Home = () => {
   const [bestSellerError, setBestSellerError] = useState(false);
 
   useEffect(() => {
+    document.title = "Drippy - Home"
+  })
+
+  useEffect(() => {
     dispatch(
       fetchProductsByFilters({
         gender: "Women",

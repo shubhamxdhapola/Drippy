@@ -19,6 +19,10 @@ const Register = () => {
   const isCheckoutRedirect = redirect.includes("checkout");
 
   useEffect(() => {
+    document.title = "Drippy - Register";
+  });
+
+  useEffect(() => {
     if (user) {
       if (cart?.products?.length > 0 && guestId) {
         dispatch(mergeCart({ guestId, user })).then(() => {
@@ -45,15 +49,14 @@ const Register = () => {
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
-    if(!formData.name.trim()) return toast.error("Name is required!")
-    if(!formData.email.trim()) return toast.error("Email is required!")
-    if(!formData.password.trim()) return toast.error("Password is required!")
+    if (!formData.name.trim()) return toast.error("Name is required!");
+    if (!formData.email.trim()) return toast.error("Email is required!");
+    if (!formData.password.trim()) return toast.error("Password is required!");
     dispatch(registerUser(formData))
-    .unwrap()
-    .then(res => toast.success(res.message))
-    .catch(err => toast.error(err.message))
+      .unwrap()
+      .then((res) => toast.success(res.message))
+      .catch((err) => toast.error(err.message));
   };
 
   return (
@@ -122,10 +125,12 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className={`w-full ${loading ? 'bg-gray-600 cursor-not-allowed': 'bg-black'} text-white p-2 rounded-lg font-semibold hover:bg-gr800 transition-all duration-300`}
+            className={`w-full ${
+              loading ? "bg-gray-600 cursor-not-allowed" : "bg-black"
+            } text-white p-2 rounded-lg font-semibold hover:bg-gr800 transition-all duration-300`}
             disabled={loading}
           >
-            {loading ? <Loader2 className="animate-spin mx-auto"/> : "Sign Up"}
+            {loading ? <Loader2 className="animate-spin mx-auto" /> : "Sign Up"}
           </button>
           <p className="mt-6 text-center text-sm">
             Already have an account?&nbsp;
