@@ -23,6 +23,16 @@ const OrderDetailsPage = () => {
     document.title = "Drippy - Orders Details";
   });
 
+  const splitDate = (timestamp) => {
+    return formatTimestamp(timestamp).split(",").slice(0, 3).join(",");
+  };
+
+  const calulateEstimateDelivery = (createdAt) => {
+    const orderDate = new Date(createdAt);
+    orderDate.setDate(orderDate.getDate() + 10);
+    return splitDate(orderDate);
+  };
+
   if (loading)
     return (
       <div className="flex justify-center items-center h-[80vh]">
@@ -36,6 +46,8 @@ const OrderDetailsPage = () => {
         <ErrorPage />;
       </div>
     );
+
+  console.log(orderDetails);
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -58,6 +70,15 @@ const OrderDetailsPage = () => {
                   .split(",")
                   .pop()}`}
               </p>
+              {(orderDetails.status === "Shipped" ||
+                orderDetails.status === "Processing") && (
+                  <div>
+                    <p className="text-emerald-700 mt-4 md:mt-0">
+                      Delivered By :{" "}
+                      {calulateEstimateDelivery(orderDetails.createdAt)}
+                    </p>
+                  </div>
+                )}
             </div>
             <div className="flex flex-col items-start sm:items-end mt-4 sm:mt-0">
               <span
