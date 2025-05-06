@@ -26,27 +26,29 @@ import PageNotFound from "./pages/PageNotFound";
 // import 'aos/dist/aos.css';
 
 const App = () => {
-
-  const dispatch = useDispatch()
-  const { user, guestId } = useSelector(state => state.auth)
-
-  useEffect(() => {
-    document.title = "Drippy - Home"
-  })
+  const dispatch = useDispatch();
+  const { user, guestId } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if(user || guestId) {
-      dispatch(fetchCart({userId : user?._id, guestId}))
+    document.title = "Drippy - Home";
+  });
+
+  useEffect(() => {
+    if (user || guestId) {
+      dispatch(fetchCart({ userId: user?._id, guestId }));
     }
-  }, [user, guestId, dispatch])
+  }, [user, guestId, dispatch]);
 
   // useEffect(() => {
-  //   AOS.init({ duration: 1000 }); 
-  // }, []);  
+  //   AOS.init({ duration: 1000 });
+  // }, []);
 
   return (
     <BrowserRouter>
-      <Toaster position="top-center" />
+      <Toaster
+        position="bottom-right"
+        toastOptions={{ style: { fontFamily: "Outfit", fontSize: "14px" } }}
+      />
       <Routes>
         {/* User Routes */}
         <Route path="/" element={<UserLayout />}>
