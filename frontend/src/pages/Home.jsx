@@ -69,7 +69,7 @@ const Home = () => {
       ) : (
         <ProductDetailsSkeleton />
       )}
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-20 sm:mt-10">
         <h2
           className="text-2xl sm:text-3xl text-center font-bold mb-4"
           data-aos="zoom-in"
