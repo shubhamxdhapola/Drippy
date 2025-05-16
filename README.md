@@ -70,12 +70,16 @@ PORT=5000
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
 ORIGIN=your_frontend_url
+CLOUD_NAME=your_cloudinary_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
 #### Frontend `.env`
 
 ```env
 REACT_APP_PAYPAL_CLIENT_ID=your_paypal_client_id
+BASE_URL=your_backend_url
 ```
 
 ---
