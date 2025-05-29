@@ -3,7 +3,6 @@ import { setCurrentPage } from "../../redux/slices/paginationSlice";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Pagination = ({ totalProducts, productsPerPage }) => {
-
   const dispatch = useDispatch();
   const totalPages = [...Array(Math.ceil(totalProducts / productsPerPage))];
   const { currentPage } = useSelector((state) => state.pagination);
@@ -12,15 +11,19 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
     window.scrollTo(0, 0);
     dispatch(setCurrentPage(currentPage));
   };
-  
+
   const firstPage = 1;
   const lastPage = totalPages.length;
-  
+  console.log(currentPage, firstPage)
+
   return (
-    <div className="flex justify-center items-center gap-2 my-10">
+    <div
+      className="flex justify-center items-center gap-2 my-10 overflow-x-auto"
+      style={{ scrollbarWidth: "none" }}
+    >
       <div className="join">
         <button
-          className={`join-item btn ${
+          className={`join-item btn btn-sm sm:btn-md rounded-md sm:rounded-lg ${
             currentPage === firstPage || totalPages.length < 1
               ? "hidden"
               : "inline-block"
@@ -31,21 +34,23 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
         </button>
       </div>
       <div className="join">
-        {totalPages.length > 1 && totalPages.map((_, index) => (
-          <button
-            key={index}
-            className={`join-item btn rounded-md ${
-              currentPage === index + 1 && "btn-active "
-            }`}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {totalPages.length > 1 &&
+          totalPages.map((_, index) => (
+            <button
+              key={index}
+              className={`join-item btn btn-sm sm:btn-md rounded-sm sm:rounded-lg ${
+                currentPage === index + 1 &&
+                "btn-active bg-[#3d9970cc] text-white border-[#64ad8d]"
+              }`}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
       </div>
       <div className="join">
         <button
-          className={`join-item btn ${
+          className={`join-item btn btn-sm sm:btn-md rounded-sm sm:rounded-lg ${
             currentPage === lastPage || totalPages.length < 1
               ? "hidden"
               : "inline-block"

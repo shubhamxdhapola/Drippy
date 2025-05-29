@@ -10,6 +10,7 @@ import {
 } from "../../redux/slices/productsSlice";
 import { addToCart } from "../../redux/slices/cartSlice";
 import ProductDetailsSkeleton from "../Skeletons/ProductDetailsSkeleton";
+import SimilarProducts from "./SimilarProducts";
 
 const ProductDetails = ({ productId }) => {
   const { id } = useParams();
@@ -262,11 +263,7 @@ const ProductDetails = ({ productId }) => {
               {" "}
               You May Also Like{" "}
             </h2>
-            <ProductGrid
-              products={similarProducts}
-              loading={loading}
-              error={error}
-            />
+            <SimilarProducts products={similarProducts} />
           </div>
         </div>
       )}

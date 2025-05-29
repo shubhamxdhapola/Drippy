@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaFilter } from "react-icons/fa";
 import FilterSidebar from "../components/Products/FilterSidebar";
 import SortOptions from "../components/Products/SortOptions";
 import ProductGrid from "../components/Products/ProductGrid";
@@ -86,6 +85,8 @@ const CollectionPage = () => {
           error={error}
           productsPerPage={productsPerPage}
         />
+
+        {/* Pagination */}
         <Pagination
           totalProducts={products.length}
           productsPerPage={productsPerPage}
