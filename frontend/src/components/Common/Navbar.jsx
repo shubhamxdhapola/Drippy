@@ -45,7 +45,7 @@ const Navbar = () => {
     <>
       <nav className="container mx-auto flex items-center justify-between px-3 py-4 sm:px-6">
         {/* Logo Left */}
-        <div data-aos="fade-right">
+        <div data-aos="fade-right" onClick={resetCurrentPage}>
           <Link to="/" className="text-xl sm:text-2xl font-medium logo">
             Drippy
           </Link>
