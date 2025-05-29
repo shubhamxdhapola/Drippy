@@ -5,6 +5,7 @@ import CartContents from "../Cart/CartContents";
 import { useEffect, useRef } from "react";
 
 const CartDrawer = ({ cartDrawerOpen, toggleCartDrawer, setCartDrawerOpen }) => {
+  
   const navigate = useNavigate();
   const { user, guestId } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);

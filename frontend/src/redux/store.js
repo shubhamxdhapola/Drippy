@@ -7,6 +7,7 @@ import ordersReducer from './slices/orderSlice.js'
 import adminReducer from './slices/adminSlice.js'
 import adminProductsReducer from './slices/adminProductsSlice.js'
 import adminOrdersReducer from './slices/adminOrdersSlice.js'
+import paginationSlice from './slices/paginationSlice.js'
 
 const store = configureStore({   
     reducer : {
@@ -18,6 +19,7 @@ const store = configureStore({
         admin : adminReducer,
         adminProducts : adminProductsReducer,
         adminOrders : adminOrdersReducer,
+        pagination : paginationSlice
     }    
 })
 

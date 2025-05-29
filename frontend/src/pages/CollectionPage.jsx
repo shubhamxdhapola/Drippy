@@ -7,6 +7,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "../redux/slices/productsSlice";
 import { SlidersHorizontal } from "lucide-react";
+import Pagination from "../components/Layout/Pagination";
 
 const CollectionPage = () => {
   const { collection } = useParams();
@@ -16,6 +17,7 @@ const CollectionPage = () => {
   const queryParams = Object.fromEntries([...searchParams]);
   const sidebarRef = useRef(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const productsPerPage = 8;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -78,7 +80,16 @@ const CollectionPage = () => {
         <SortOptions />
 
         {/* Product Grid */}
-        <ProductGrid products={products} loading={loading} error={error} />
+        <ProductGrid
+          products={products}
+          loading={loading}
+          error={error}
+          productsPerPage={productsPerPage}
+        />
+        <Pagination
+          totalProducts={products.length}
+          productsPerPage={productsPerPage}
+        />
       </div>
     </div>
   );

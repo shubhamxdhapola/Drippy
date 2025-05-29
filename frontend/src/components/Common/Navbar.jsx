@@ -8,7 +8,8 @@ import SearchBar from "./SearchBar";
 import CartDrawer from "../Layout/CartDrawer";
 import { useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../../redux/slices/paginationSlice";
 
 const Navbar = () => {
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
@@ -17,6 +18,7 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
   const navRef = useRef(null);
   const location = useLocation();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -29,6 +31,8 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const resetCurrentPage = () => dispatch(setCurrentPage(1));
 
   const cartItemCount =
     cart?.products?.reduce((total, product) => total + product.quantity, 0) ||
@@ -60,6 +64,7 @@ const Navbar = () => {
                   : "text-gray-700 hover:text-black"
               } text-sm font-medium uppercase       
             `}
+            onClick={resetCurrentPage}
           >
             Men
           </Link>
@@ -73,6 +78,7 @@ const Navbar = () => {
                   : "text-gray-700 hover:text-black"
               } text-sm font-medium uppercase      
             `}
+            onClick={resetCurrentPage}
           >
             Women
           </Link>
@@ -86,6 +92,7 @@ const Navbar = () => {
                   : "text-gray-700 hover:text-black"
               } text-sm font-medium uppercase
             `}
+            onClick={resetCurrentPage}
           >
             Top wear
           </Link>
@@ -99,6 +106,7 @@ const Navbar = () => {
                   : "text-gray-700 hover:text-black"
               } text-sm font-medium uppercase       
             `}
+            onClick={resetCurrentPage}
           >
             Bottom wear
           </Link>
@@ -106,6 +114,7 @@ const Navbar = () => {
             <Link
               to="/admin"
               className="inline-block px-3 rounded-full border border-gray-600 text-sm text-gray-700 font-medium py-1 hover:bg-drippy-green hover:border-drippy-green hover:text-white duration-300 transition-all"
+              onClick={resetCurrentPage}
             >
               Admin Panel
             </Link>
