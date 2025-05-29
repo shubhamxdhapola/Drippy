@@ -23,7 +23,7 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
     >
       <div className="join">
         <button
-          className={`join-item btn btn-sm sm:btn-md rounded-md sm:rounded-lg ${
+          className={`join-item btn ${
             currentPage === firstPage || totalPages.length < 1
               ? "hidden"
               : "inline-block"
@@ -38,7 +38,7 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
           totalPages.map((_, index) => (
             <button
               key={index}
-              className={`join-item btn btn-sm sm:btn-md rounded-sm sm:rounded-lg ${
+              className={`join-item btn ${
                 currentPage === index + 1 &&
                 "btn-active bg-[#3d9970cc] text-white border-[#64ad8d]"
               }`}
@@ -50,7 +50,7 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
       </div>
       <div className="join">
         <button
-          className={`join-item btn btn-sm sm:btn-md rounded-sm sm:rounded-lg ${
+          className={`join-item btn ${
             currentPage === lastPage || totalPages.length < 1
               ? "hidden"
               : "inline-block"
