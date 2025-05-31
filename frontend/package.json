@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^2.6.1",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
+    "firebase": "^11.8.1",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.485.0",
     "react": "^19.0.0",

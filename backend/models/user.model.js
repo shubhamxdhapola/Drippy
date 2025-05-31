@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import bcrypt from "bcryptjs"
 
-const userSchema =  new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name : {
         type : String,
         required : true,
@@ -16,7 +16,7 @@ const userSchema =  new mongoose.Schema({
     },
     password : {
         type : String,
-        required : true,
+        required : false,
         minLength : 1
     },
     role : {

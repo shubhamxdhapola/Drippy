@@ -46,7 +46,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Toaster
-        position="bottom-right"
+        position="top-center"
         toastOptions={{ style: { fontFamily: "Outfit", fontSize: "14px" } }}
       />
       <Routes>

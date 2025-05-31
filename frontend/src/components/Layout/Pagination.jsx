@@ -14,7 +14,6 @@ const Pagination = ({ totalProducts, productsPerPage }) => {
 
   const firstPage = 1;
   const lastPage = totalPages.length;
-  console.log(currentPage, firstPage)
 
   return (
     <div

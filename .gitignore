@@ -10,4 +10,5 @@ backend/node_modules/
 frontend/.env
 backend/.env
 
+serviceAccountKey.json
 .DS_Store
