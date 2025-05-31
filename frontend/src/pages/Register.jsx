@@ -147,9 +147,9 @@ const Register = () => {
             </button>
           </form>
           <div className="text-center p-4 flex items-center justify-center">
-            <hr className="flex-grow border-t-2 border-gray-300" />
+            <hr className="flex-grow border-t-1 border-gray-300" />
             <span className="text-gray-600 text-sm mx-4">OR</span>
-            <hr  className="flex-grow border-t-2 border-gray-300"/>
+            <hr  className="flex-grow border-t-1 border-gray-300"/>
           </div>
           <div>
             <button onClick={handleGoogleSingIn} className="w-full">

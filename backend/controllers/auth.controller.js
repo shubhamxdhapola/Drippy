@@ -83,7 +83,7 @@ export const googleSignIn = async (req, res) => {
         const decodedToken = await admin.auth().verifyIdToken(idToken)
         const { name, email } = decodedToken
 
-        const user = await User.findOne({ email })
+        let user = await User.findOne({ email })
         if (!user) {
             user = await User.create({ name, email })
         }
